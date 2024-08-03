@@ -23,7 +23,7 @@ Route::get('/', function () {
 Route::get('/login', 'Auth\LoginController@login');
 Route::post('/login', 'Auth\LoginController@login');
 
-Route::get('/register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@register'); ///registerリンクにアクセスしたらRegisterControllerのregisterメソッドを呼び出す
 Route::post('/register', 'Auth\RegisterController@register');
 
 Route::get('/added', 'Auth\RegisterController@added');

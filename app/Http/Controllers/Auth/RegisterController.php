@@ -40,7 +40,7 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-        if($request->isMethod('post')){
+        if($request->isMethod('post')){//isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する、一致すればtrueが、しなければfalseが返る
 
             $username = $request->input('username');
             $mail = $request->input('mail');

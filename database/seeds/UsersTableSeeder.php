@@ -11,11 +11,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        //シードで初期ユーザーのデータを作成する
         DB::table('users')->insert([
             'name' => 'UserName',
             'email' => 'User@mailaddress.com',
             'password' => bcrypt('password'),
         ]);
-        //
     }
 }

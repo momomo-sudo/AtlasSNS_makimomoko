@@ -20,9 +20,13 @@
     <!--OGPタグ/twitterカード-->
 </head>
 <body>
+    <!-- ヘッダーエリア -->
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
+        <h1><a href="#"> <!-- アンカーエイチレフ→ページの最上部へのリンク -->
+            <img src="images/logo.png" alt="Atlas"> <!-- 画像と画像の代わりのテキスト -->
+            </a>
+        </h1>
             <div id="">
                 <div id="">
                     <p>〇〇さん<img src="images/arrow.png"></p>

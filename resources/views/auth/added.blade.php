@@ -3,7 +3,8 @@
 @section('content')
 
 <div id="clear">
-  <?php $user = Auth::user();?>{{ $user->name }}
+  <p>
+  <?php $user = Auth::user();?>{{ $user->name }}さん</p>
   <!-- <p>〇〇さん</p> -->
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>

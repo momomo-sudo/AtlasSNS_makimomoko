@@ -27,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/top';
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,9 @@ class RegisterController extends Controller
                 'password' => bcrypt($password),
             ]);
 
+            //addad.bladeのセッションでユーザー名表示。
+            //登録完了したユーザー名をセッションに保存する→保存したユーザー名をビューファイルへ表示する。
+            $request->session()->put('username', $username);
             return redirect('added');
         }
         return view('auth.register');

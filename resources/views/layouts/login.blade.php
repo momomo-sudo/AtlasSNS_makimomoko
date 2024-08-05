@@ -23,22 +23,27 @@
     <!-- ヘッダーエリア -->
     <header>
         <div id = "head">
-        <h1><a href="#"> <!-- アンカーエイチレフ→ページの最上部へのリンク -->
-            <img src="images/logo.png" alt="Atlas"> <!-- 画像と画像の代わりのテキスト -->
+        <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
+            <img src="{{ asset('/images/logo.png') }}" alt="Atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
             </a>
         </h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
+            <div class="side_user">
+                <div id="accordion" class="accordion-container">
+                    <div class="accordion-title js-accordion-title">
+                    <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/arrow.png') }}"></p>
+                       <div>
+                <ul class="menu"> <!-- 今回消したり表示したいのはここ-->
+                    <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
+                    <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
+                    <li><a class="center" href="/logout">ログアウト</a></li>
                 </ul>
+                       </div>
+                     </div>
+                </div>
             </div>
         </div>
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
@@ -60,9 +65,11 @@
             <p class="btn"><a href="">ユーザー検索</a></p>
         </div>
     </div>
+    <!-- フッターエリア -->
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <!-- Javascript・jQueryのファイルリンク -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('/js/script.js') }}"></script>
 </body>
 </html>

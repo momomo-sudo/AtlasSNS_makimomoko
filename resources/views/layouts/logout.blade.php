@@ -20,6 +20,7 @@
   <!--OGPタグ/twitterカード-->
 </head>
 <body>
+  <!-- ヘッダーエリア -->
   <header>
     <h1><img src="images/atlas.png"></h1>
     <p>Social Network Service</p>

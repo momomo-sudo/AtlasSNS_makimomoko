@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <!--IEブラウザ対策-->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
@@ -22,23 +22,23 @@
 <body>
     <!-- ヘッダーエリア -->
     <header>
-        <div id = "head">
-        <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
+        <div id="head">
+            <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
             <img src="{{ asset('/images/logo.png') }}" alt="Atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
             </a>
         </h1>
             <div class="side_user">
                 <div id="accordion" class="accordion-container">
                     <div class="accordion-title js-accordion-title">
-                    <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/arrow.png') }}"></p>
-                       <div>
-                <ul class="menu"> <!-- 今回消したり表示したいのはここ-->
-                    <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
-                    <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
-                    <li><a class="center" href="/logout">ログアウト</a></li>
-                </ul>
-                       </div>
-                     </div>
+                        <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/arrow.png') }}"></p>
+
+                        <ul class="menu"> <!-- 今回消したり表示したいのはここ-->
+                            <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
+                            <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
+                            <li><a class="center" href="/logout">ログアウト</a></li>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -47,18 +47,18 @@
     <div id="row">
         <div id="container">
             @yield('content')
-        </div >
+        </div>
         <div id="side-bar">
             <div id="confirm">
                 <p>〇〇さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                    <p>フォロー数</p>
+                    <p>〇〇名</p>
                 </div>
                 <p class="btn"><a href="">フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                    <p>フォロワー数</p>
+                    <p>〇〇名</p>
                 </div>
                 <p class="btn"><a href="">フォロワーリスト</a></p>
             </div>

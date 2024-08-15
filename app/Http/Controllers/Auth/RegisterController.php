@@ -39,8 +39,9 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function register(Request $request){
-        if($request->isMethod('post')){//isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する、一致すればtrueが、しなければfalseが返る
+    public function register(Request $request)
+    {
+        if ($request->isMethod('post')) {//isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する、一致すればtrueが、しなければfalseが返る
 
             $username = $request->input('username');
             $mail = $request->input('mail');
@@ -49,7 +50,7 @@ class RegisterController extends Controller
             User::create([
                 'username' => $username,
                 'mail' => $mail,
-                'password' => bcrypt($password),
+                'password' => bcrypt($password), //暗号化している
             ]);
 
             //addad.bladeのセッションでユーザー名表示。
@@ -60,7 +61,8 @@ class RegisterController extends Controller
         return view('auth.register');
     }
 
-    public function added(){
+    public function added()
+    {
         return view('auth.added');
     }
 }

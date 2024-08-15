@@ -24,20 +24,27 @@
     <header>
         <div id="head">
             <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
-            <img src="{{ asset('/images/logo.png') }}" alt="Atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
+            <img src="{{ asset('/images/atlas.png') }}" alt="Atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
             </a>
         </h1>
             <div class="side_user">
                 <div id="accordion" class="accordion-container">
                     <div class="accordion-title js-accordion-title">
-                        <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/arrow.png') }}"></p>
+                        <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/icon1.png') }}"></p>
+
+                        <!-- imagesフォルダ内のユーザーの画像を表示する -->
+                        <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。
+                         /images/icon1.png→publicディレクトリ内のimagesフォルダにあるicon1.pngという画像ファイルのパス-->
 
                         <ul class="menu"> <!-- 今回消したり表示したいのはここ-->
                             <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
-                            <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
-                            <li><a class="center" href="/logout">ログアウト</a></li>
-                        </ul>
+                            <!-- ここがスタート、web.phpに繋げる -->
 
+                            <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
+                            <!-- ここがスタート -->
+                            <li><a class="center" href="{{ URL::to('/logout') }}">ログアウト</a></li>
+                            <!-- ここからスタートしてweb.phpに繋げている -->
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -50,19 +57,20 @@
         </div>
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ Auth::user()->username }}さんの</p>
                 <div>
                     <p>フォロー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
+                <!-- ここからweb.phpに繋げる -->
                 <div>
                     <p>フォロワー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
         </div>
     </div>
     <!-- フッターエリア -->

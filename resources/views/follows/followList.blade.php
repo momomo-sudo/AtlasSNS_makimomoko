@@ -2,4 +2,5 @@
 
 @section('content')
 
+<h3>ここはフォローリストのページです。</h3>
 @endsection

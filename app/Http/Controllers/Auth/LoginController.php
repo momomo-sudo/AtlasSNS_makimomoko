@@ -39,16 +39,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
-        if($request->isMethod('post')){
+    public function login(Request $request)
+    {
+        if ($request->isMethod('post')) {
 
-            $data=$request->only('mail','password');
+            $data = $request->only('mail', 'password');
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
-            if(Auth::attempt($data)){
-                return redirect('/top');
+            if (Auth::attempt($data)) {
+                return redirect('/top');//これは/を使ってURLと繋げている
             }
         }
-        return view("auth.login");
+        return view("auth.login"); //authフォルダ内のlogin.blade.php
+    }
+
+    public function logout()
+    {
+        Auth::logout(); //ログアウトさせる
+        return redirect()->route('login'); //ログインのルート（URLではない）を、web.phpの/loginの処理に繋げている。
     }
 }

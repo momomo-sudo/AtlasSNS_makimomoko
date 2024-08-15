@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -15,7 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'mail', 'password',
+        'username',
+        'mail',
+        'password',
     ];
 
     /**
@@ -24,6 +27,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+
+
+    //リレーション定義を追加
+    //「１対多」の「多」側 → メソッド名は複数形。
+    public function posts()
+    {
+        return $this->hasMany('App\Post'); //belongsToは１対多の時、hasManyと使う
+        //↑かっこの中は繋げたいリレーション先
+    }
 }

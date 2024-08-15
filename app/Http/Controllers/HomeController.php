@@ -11,9 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct() // __constructメソッド→どのURLと繋げる？
     {
-        $this->middleware('auth');
+        $this->middleware('auth');//そのコントローラー内のすべてのアクションに対して認証を要求することができる。
+        //認証されていないユーザーがアクセスを試みると、ログインページにリダイレクトされる
     }
 
     /**
@@ -21,8 +22,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() //indexメソッド→どのURLと繋げる？postリクエスト？
+    //リソースコントローラーのデフォルトのアクションとして使用され、リソースの一覧表示やホームページの表示に利用されます。
     {
-        return view('home');
+        // 認証されたユーザーのみがアクセスできる
+        return view('layouts.login');//layoutsフォルダ内のlogin.bladeに繋げる
     }
 }

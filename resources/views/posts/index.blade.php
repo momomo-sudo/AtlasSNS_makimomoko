@@ -12,26 +12,73 @@
     <!-- getとPOST、情報を登録するときはPOST、検索するときや画面を表示するときはGET -->
     @csrf
     <div>
-      <img src="{{ asset('/images/icon1.png') }}">
+      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="40" height="40">
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
-      <input type="image" src="{{ asset('/images/post.png') }}">
+      <div class="button">
+        <button type="submit"> <img class="post-btn" src="images/post.png" style="width: 50px; height: 50px;"></button>
+      </div>
   </form>
-  @foreach ($posts as $post)
+  @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
     <tr>
-    <td>{{ $post->user->images }}</td>
+    <td><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" style="width: 50px; height: 50px;"></td>
+
     <td>{{ $post->user->username }}</td>
     <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。imagesがテーブルのカラム名 -->
     <td>{{ $post->post }}</td>
     <td>{{ $post->user->created_at }}</td>
-    <!-- <td><a class="btn btn-primary" href="/posts/{{$post->id}}/edit">>編集</a></td> -->
-    <!-- クラス名btn-primaryは、cssでレイアウトを反映するため
-     <a>タグのhref属性に各リストのidカラムの値が表示されるように設置した-->
 
-    <!-- 編集機能 -->
-    <td><a href="{{ route('post.edit', ['id' => $post->user_id]) }}" class="btn btn-info">編集</a></td>
+
+    <!-- 編集ボタン↓ -->
+    @if ($user_id == $post->user_id)
+    <form action="{{ route('post.edit', $post->id) }}">
+      <button class="btn_edit"></button>
+      <!-- HTTPの通信方法をGETにして、URLにパラメータを一緒に送れるようにする -->
+      <!-- aタグのhref属性に各リストのidカラムの値が表示されるように設置をした -->
+      <style>
+      .btn_edit {
+      width: 50px;
+      height: 50px;
+      background-image: url('images/edit.png');
+      background-size: cover;
+      /* 背景画像をボタン全体に合わせる */
+      background-position: center;
+      /* 画像の位置を中央に設定 */
+      border: none;
+      /* ボーダーを非表示 */
+      cursor: pointer;
+      }
+      </style>
+    </form>
+
+  @endif
 
     <!-- 削除機能 -->
-    <td><a href="{{ route('post.delete', ['id' => $post->user_id]) }}" class="btn  btn-danger" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td>
+    @if ($user_id == $post->user_id)
+    <form action="{{ route('post.delete', $post->id) }}" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+      <button class="btn_delete"></button>
+      <style>
+      .btn_delete {
+      width: 50px;
+      height: 50px;
+      background-image: url('images/trash-h.png');
+      background-size: cover;
+      /* 背景画像をボタン全体に合わせる */
+      background-position: center;
+      /* 画像の位置を中央に設定 */
+      border: none;
+      /* ボーダーを非表示 */
+      cursor: pointer;
+      }
+
+      .btn_delete:hover {
+      background-image: url('images/trash.png');
+      -webkit-transition: .2s ease-in-out;
+      transition: .2s ease-in-out;
+      }
+      </style>
+
+    </form>
+  @endif
     <!-- ・ユーザーアイコン
     ・ユーザー名
     ・投稿内容

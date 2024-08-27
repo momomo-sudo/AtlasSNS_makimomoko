@@ -12,6 +12,25 @@
 */
 
 
+use Illuminate\Support\Facades\Route;
+//ログインしているユーザーのみアクセスできるルートの設定（auth ミドルウェアが適用されたルートグループ内のすべてのルートは、ログイン済みのユーザーのみがアクセス可能になる）
+Route::middleware(['auth'])->group(function () {
+    // トップページ
+    Route::get('/top', 'HomeController@index')->name('home');
+    // プロフィール編集ページ
+    Route::get('/profile', 'UsersController@profile');
+    Route::post('/profile', 'UsersController@update')->name('profile.update');
+    // ユーザー検索ページ
+    Route::get('/search', 'UsersController@search')->name('users.search');
+    // フォローリストページ
+    Route::get('/follow-list', 'FollowsController@followList');
+    Route::post('/follow-list/{userId}', 'FollowsController@store');
+    // フォロワーリストページ
+    Route::get('/follower-list', 'FollowsController@followerList');
+    Route::post('/follow/{userId}/destroy', 'FollowsController::class@destroy');
+    // 相手ユーザーのプロフィールページ（ミドルウェアをやる）
+    // Route::get('/user/{id}', 'UsersController@show')->name('user.profile');
+});
 
 //ルーティングの基本構文
 // Route::①('②', '③');
@@ -33,7 +52,6 @@ Auth::routes();
 
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login')->name('login');//getはログインページを表示するだけの処理。だから、LoginController.phpのlogoutメソッドから繋がれた。(ここがゴール)
-
 Route::post('/login', 'Auth\LoginController@login');//postは実際にmailとpasswordを入力してログインをする処理
 
 Route::get('/register', 'Auth\RegisterController@register'); ///registerリンクにアクセスしたらRegisterControllerのregisterメソッドを呼び出す
@@ -50,14 +68,20 @@ Route::get('/top', 'PostsController@index')->name('posts.index');
 
 //プロフィールページへのリンク
 Route::get('/profile', 'UsersController@profile');//login.bladeから来た処理をControllerのprofileメソッドに繋げている
+Route::post('/profile', 'UsersController@update')->name('profile.update');
 
 //ユーザー検索
 Route::get('/search', 'UsersController@search')->name('users.search'); ////login.bladeから来た処理をControllerのsearchメソッドに繋げている
+Route::get('/users', 'UsersController@index');
 
 
-//フォローリストのルーティング
+//フォローリストのリンク
 Route::get('/follow-list', 'FollowsController@followList');//login.blade.phpから来た処理をControllerのindexメソッドに繋げる
 Route::get('/follower-list', 'FollowsController@followerList');
+//フォローボタン
+Route::post('/users/follow', 'UsersController@follow')->name('users.follow');
+//フォローリスト表示
+Route::get('/follow-list', 'UsersController@followedIcons')->name('follows.followList');
 
 
 //投稿を押した時(処理をしているからPOST)

@@ -6,7 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class RegisterController extends Controller
 {
     /*
@@ -41,6 +41,13 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        $request->validate([
+            'username' => 'required|max:12|min:2',
+            'mail' => 'required|email|max:40|min:5|unique:users,mail',
+            'password' => 'required|alpha-num|max:20|min:8', //8文字以上、英数字等
+            'password_confirmation' => 'required|alpha-num|max:20|min:8|same:password',
+        ]);
+
         if ($request->isMethod('post')) {//isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する、一致すればtrueが、しなければfalseが返る
 
             $username = $request->input('username');

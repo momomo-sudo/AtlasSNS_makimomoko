@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
     <meta charset="utf-8" />
     <!--IEブラウザ対策-->
@@ -30,7 +30,7 @@
             <div class="side_user">
                 <div id="accordion" class="accordion-container">
                     <div class="accordion-title js-accordion-title">
-                        <p>{{ Auth::user()->username }} さん<img src="{{ asset('/images/icon1.png') }}"></p>
+                        <p>{{ Auth::user()->username }} さん <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50"></p>
 
                         <!-- imagesフォルダ内のユーザーの画像を表示する -->
                         <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。
@@ -62,15 +62,15 @@
                     <p>フォロー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
+                <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
                 <!-- ここからweb.phpに繋げる -->
                 <div>
                     <p>フォロワー数</p>
                     <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
+                <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
+            <p class="search"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
         </div>
     </div>
     <!-- フッターエリア -->
@@ -79,5 +79,21 @@
     <!-- Javascript・jQueryのファイルリンク -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <script>
+        function follow(userId) {
+            $.ajax({
+                // これがないと419エラーが出ます
+                headers: { "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content") },
+                url: `/follow/${userId}`,
+                type: "POST",
+            })
+                .done(data => {
+                    console.log(data)
+                })
+                .fail(data => {
+                    console.log(data)
+                })
+        }
+    </script>
 </body>
 </html>

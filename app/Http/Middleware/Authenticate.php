@@ -14,7 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-        if (! $request->expectsJson()) {
+        //ユーザーがログインしていない場合、ログインページへリダイレクトさせる。
+        //ブラウザで「/profile」にアクセスしたとする。しかし、ログインしていない場合、expectsJson() は false になります。コードはログインページのURLを返して、ブラウザはログインページにリダイレクトされる
+        if (!$request->expectsJson()) { //「このリクエストはJSON形式の応答を期待しているか？」を確認するもの
             return route('login');
         }
     }

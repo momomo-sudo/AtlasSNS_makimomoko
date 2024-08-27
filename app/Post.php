@@ -8,7 +8,9 @@ class Post extends Model
 {
     protected $fillable = [ //PostControllerとのやりとりにつながっている
         //データベース（atlas_sns）→テーブル→カラム（縦）→レコード（横）→フィールド（1個1個の粒）
+        //カラムの指定
         'user_id',
+        'id',
         'post'
     ];
 
@@ -20,5 +22,17 @@ class Post extends Model
         return $this->belongsTo('App\User'); //hasManyは１対多の時使う
         //↑かっこの中は繋げたいリレーション先
         //カッコの中が多だったらhasmany
+    }
+
+    /* 削除処理*/
+
+    /* 更新処理*/
+    public function updatePost($request, $post)
+    {
+        $result = $post->fill([
+            'post' => $request->post
+        ])->save();
+
+        return $result;
     }
 }

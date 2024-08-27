@@ -41,6 +41,11 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+        //ここから追記箇所
+        'loginUserCheck' => [
+            \App\Http\Middleware\LoginUserCheck::class,
+        ],
+        //ここまで
     ];
 
     /**

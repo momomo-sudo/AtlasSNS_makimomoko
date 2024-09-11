@@ -29,15 +29,17 @@ class PostsController extends Controller
         $posts = Post::get();//Postモデル（postsテーブル）からレコード情報を取得
         $user_id = Auth::id();
 
-        return view('posts.index', ['posts' => $posts, 'user_id' => $user_id]); //viewフォルダ内の、postsはフォルダ内のindex.blade.phpに繋げている。
+        //9/11追加
+        $followed = $user->follows()->pluck('followed_id');
+        $followed->push($user->id); //自分の投稿を表示させるように追加
+        // フォローしているユーザーの投稿を取得
+        $posts = Post::query()->whereIn('user_id', $followed)->latest()->get();
+        return view('posts.index', ['posts' => $posts, 'user_id' => $user_id, 'user' => $user,]); //viewフォルダ内の、postsはフォルダ内のindex.blade.phpに繋げている。
     }
 
     /**投稿機能**/
     public function store(Request $request) //Requestクラス
     {
-        $request->validate([
-            'post' => 'required|max:150',
-        ]);
         $user_id = Auth::user()->id;  //Auth::userだと、ログインしている人の情報を全部出してくれ
         $post = $request->input('content');
 
@@ -46,8 +48,10 @@ class PostsController extends Controller
         // $itou = Auth::user();
         // dd($itou);//ddはカッコの中になんの値が入っているかをみる。カッコの中身を見せてくれる
 
-        Post::create(['user_id' => $user_id, 'post' => $post,]);
-
+        Post::create(['user_id' => $user_id, 'post' => $post,]);  // 新しい投稿を作成して保存
+        $request->validate([
+            'post' => 'required|max:150',
+        ]);
         return redirect('/top'); // 投稿一覧ページにリダイレクト
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Post;
 use App\Follow;
 
 
@@ -77,12 +78,21 @@ class UsersController extends Controller
         return view('users.search', ['users' => $users, 'username' => $username]);
     }
 
-    public function show()
+    public function show($id)
     {
-        $user = Auth::user();
+        $user = User::find($id); // ページを表示する対象のユーザーを取得
+        // dd($user);
+        // フォローしているユーザーのリストを取得
         if (!$user) {//もしユーザーデータが存在しない場合、ログインページにリダイレクトする
             return redirect()->route('login');
         }
+
+        $posts = Post::query()->whereIn('user_id', $user)->latest()->get(); //latest→作成日時(created_at)の最新順で表示
+        return view('users.usersProfile', [
+            'user' => $user,
+            'posts' => $posts
+            // フォローしているユーザーのリストをビューに渡す
+        ]);
     }
 
     public function index()
@@ -111,21 +121,4 @@ class UsersController extends Controller
         return back();
     }
 
-    // フォローリスト
-    public function followedIcons()
-    {
-        // 現在ログインしているユーザーを取得
-        $user = Auth::user();
-        // フォローしているユーザーを eager load で取得
-        $followed = $user->follows()->get();
-
-        // デバッグ用にデータを確認
-        if ($followed->isEmpty()) {
-            return "フォローしているユーザーが見つかりません。";
-        }
-
-        // ビューにフォローしているユーザー情報を渡す
-        return view('follows.followList', compact('followed'));
-        //view('フォルダ名.ファイル名', 使いたい配列)
-    }
 }

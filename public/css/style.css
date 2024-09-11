@@ -10,11 +10,64 @@ header {
 
 }
 
-.accordion-title .menu {
-    margin: 0 auto;
-    /* display: none; */
-    /* ここが非表示の設定 */
+/* 9/11追加のCSS */
+.menu_btn {
+    position: relative;
 }
+
+.menu_btn::after {
+    content: "";
+    display: block;
+    height: 8px;
+    position: absolute;
+    right: 25px;
+    top: 38%;
+    transform: rotate(135deg);
+    /* 最初の矢印は下向き */
+    transition: transform .3s ease-in-out, top .3s ease-in-out;
+    width: 8px;
+}
+
+.menu_btn.open::after {
+    top: 45%;
+    /* 矢印の位置を少し変える */
+    transform: rotate(-45deg);
+    /* 矢印を上向きに変える */
+}
+
+/*
+.menu_btn {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #5a6173;
+    color: #fff;
+}
+
+.menu_list {
+    display: none; */
+
+/*アコーディオンの中身は、あらかじめ非表示にしておきます。 */
+/*
+    margin: 0;
+    padding-inline-start: 0px;
+    list-style: none;
+    background-color: #f2f2f2;
+
+    li {
+        padding: 5px 0 5px 10px;
+        border-bottom: solid 1px #fff;
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: #000;
+        }
+    }
+}
+
+ */
+
+/* 9/11追加ここまで */
 
 /* アコーディオンが開いている時の矢印のスタイル */
 

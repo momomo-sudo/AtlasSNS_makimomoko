@@ -18,6 +18,8 @@
         <button type="submit"> <img class="post-btn" src="images/post.png" style="width: 50px; height: 50px;"></button>
       </div>
   </form>
+
+  <!-- 自分と、フォローしてる人の投稿を表示 -->
   @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
     <tr>
     <td><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" style="width: 50px; height: 50px;"></td>

@@ -28,24 +28,23 @@
             </a>
         </h1>
             <div class="side_user">
-                <div id="accordion" class="accordion-container">
-                    <div class="accordion-title js-accordion-title">
-                        <p>{{ Auth::user()->username }} さん <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50"></p>
+                <p>{{ Auth::user()->username }} さん <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50"></p>
 
-                        <!-- imagesフォルダ内のユーザーの画像を表示する -->
-                        <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。
+                <!-- imagesフォルダ内のユーザーの画像を表示する -->
+                <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。
                          /images/icon1.png→publicディレクトリ内のimagesフォルダにあるicon1.pngという画像ファイルのパス-->
 
-                        <ul class="menu"> <!-- 今回消したり表示したいのはここ-->
-                            <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
-                            <!-- ここがスタート、web.phpに繋げる -->
-
-                            <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
-                            <!-- ここがスタート -->
-                            <li><a class="center" href="{{ URL::to('/logout') }}">ログアウト</a></li>
-                            <!-- ここからスタートしてweb.phpに繋げている -->
-                        </ul>
-                    </div>
+                <!-- アコーディオンメニュー -->
+                <div class="menu-box">
+                    <button type="button" id="menu_btn" class="menu_btn">メニューボタン（クリックして開閉）</button>
+                    <ul class="menu"><!-- 今回消したり表示したいのはここ-->
+                        <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
+                        <!-- ここがスタート、web.phpに繋げる -->
+                        <li><a class="profile" href="{{ URL::to('/profile') }}">プロフィール</a></li>
+                        <!-- ここがスタート -->
+                        <li><a class="center" href="{{ URL::to('/logout') }}">ログアウト</a></li>
+                        <!-- ここからスタートしてweb.phpに繋げている -->
+                    </ul>
                 </div>
             </div>
         </div>

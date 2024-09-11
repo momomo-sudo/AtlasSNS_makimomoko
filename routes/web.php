@@ -29,7 +29,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/follower-list', 'FollowsController@followerList');
     Route::post('/follow/{userId}/destroy', 'FollowsController::class@destroy');
     // 相手ユーザーのプロフィールページ（ミドルウェアをやる）
-    // Route::get('/user/{id}', 'UsersController@show')->name('user.profile');
+    Route::get('/follow-list/{id}', 'UsersController@show')->name('follows.profile');
+    Route::get('/follower-list/{id}', 'UsersController@show')->name('follower.profile');
 });
 
 //ルーティングの基本構文
@@ -60,14 +61,13 @@ Route::post('/register', 'Auth\RegisterController@register'); //登録処理を�
 //ログアウトする時
 Route::get('/logout', 'Auth\LoginController@logout');
 
-
 Route::get('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ、投稿ページ
 Route::get('/top', 'PostsController@index')->name('posts.index');
 
 //プロフィールページへのリンク
-Route::get('/profile', 'UsersController@profile');//login.bladeから来た処理をControllerのprofileメソッドに繋げている
+Route::get('/profile', 'UsersController@profile')->name('user.profile');//login.bladeから来た処理をControllerのprofileメソッドに繋げている
 Route::post('/profile', 'UsersController@update')->name('profile.update');
 
 //ユーザー検索
@@ -75,13 +75,16 @@ Route::get('/search', 'UsersController@search')->name('users.search'); ////login
 Route::get('/users', 'UsersController@index');
 
 
-//フォローリストのリンク
-Route::get('/follow-list', 'FollowsController@followList');//login.blade.phpから来た処理をControllerのindexメソッドに繋げる
-Route::get('/follower-list', 'FollowsController@followerList');
+//フォローリスト表示
+Route::get('/follow-list', 'FollowsController@followList')->name('follows.followList');
+//login.blade.phpから来た処理をControllerのindexメソッドに繋げる
+Route::get('/follower-list', 'FollowsController@followerList')->name('follows.followerList');
+//フォロー、フォロワーの人のページ
+Route::get('/follow-list/{id}', 'UsersController@show')->name('follows.profile');
+Route::get('/follower-list/{id}', 'UsersController@show')->name('follower.profile');
+
 //フォローボタン
 Route::post('/users/follow', 'UsersController@follow')->name('users.follow');
-//フォローリスト表示
-Route::get('/follow-list', 'UsersController@followedIcons')->name('follows.followList');
 
 
 //投稿を押した時(処理をしているからPOST)

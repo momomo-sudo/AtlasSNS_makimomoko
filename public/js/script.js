@@ -3,21 +3,23 @@ $(function () { // if document is ready
 });
 
 jQuery(function ($) {
-  $('.js-accordion-title').on('click', function () {
+  // スムーズスクロール
+  $(function () {
+    $('a[href^="#"]').on('click', function () {
+      const speed = 400;
+      const href = $(this).attr('href');
+      const target = $(href === '#' || href === '' ? 'html' : href);
+      const position = target.offset().top;
+      $('body,html').animate({ scrollTop: position }, speed, 'swing');
+      return false;
+    });
+  });
 
-    // $(this)とは、clickした要素である「.js-accordion-title」
+  // アコーディオン
+  $(function () {
+    $('#menu_btn').on('click', function () {
+      $(this).next().slideToggle();
+    });
+  });
 
-    $(this).find('.ul');//js-accordion-title→$(this)の小要素の中から、ulタグ(menu)のみ取得する
-    // クリックでコンテンツを開閉
-
-    // $(this).next('menu').slideToggle(200);
-    //$thisは、clickした要素である.js-accordion-title。next()は兄弟要素で次に当たる要素。
-    //slideToggle(200)は消えているなら表示し、表示されているなら消すという動作を指定。
-    //つまり、「.js-accordion-titleの次の兄弟要素を消したり表示したりする」
-
-    // 矢印の向きを変更
-    // $(this).toggleClass('open', 200);
-
-
-  }).next().hide();
 });

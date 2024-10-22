@@ -14,6 +14,7 @@
 
 use Illuminate\Support\Facades\Route;
 //ログインしているユーザーのみアクセスできるルートの設定（auth ミドルウェアが適用されたルートグループ内のすべてのルートは、ログイン済みのユーザーのみがアクセス可能になる）
+//アクセス制限
 Route::middleware(['auth'])->group(function () {
     // トップページ
     Route::get('/top', 'HomeController@index')->name('home');
@@ -27,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/follow-list/{userId}', 'FollowsController@store');
     // フォロワーリストページ
     Route::get('/follower-list', 'FollowsController@followerList');
-    Route::post('/follow/{userId}/destroy', 'FollowsController::class@destroy');
+    Route::post('/follow/{userId}/destroy', 'FollowsController::class@destroy');//特定のフォロワーページ
     // 相手ユーザーのプロフィールページ（ミドルウェアをやる）
     Route::get('/follow-list/{id}', 'UsersController@show')->name('follows.profile');
     Route::get('/follower-list/{id}', 'UsersController@show')->name('follower.profile');
@@ -80,7 +81,7 @@ Route::get('/follow-list', 'FollowsController@followList')->name('follows.follow
 //login.blade.phpから来た処理をControllerのindexメソッドに繋げる
 Route::get('/follower-list', 'FollowsController@followerList')->name('follows.followerList');
 //フォロー、フォロワーの人のページ
-Route::get('/follow-list/{id}', 'UsersController@show')->name('follows.profile');
+Route::get('/follow-list/{id}', 'UsersController@')->name('follows.profile');
 Route::get('/follower-list/{id}', 'UsersController@show')->name('follower.profile');
 
 //フォローボタン
@@ -91,13 +92,12 @@ Route::post('/users/follow', 'UsersController@follow')->name('users.follow');
 Route::post('/posts', 'PostsController@store')->name('post.store');
 
 //編集ボタンを押した時のルート
-Route::get('/edit/{id}', 'PostsController@edit')->name('post.edit');
+Route::patch('/posts/{id}', 'PostsController@update')->name('post.update');
 
 //削除ボタンを押した時のルート
 Route::get('/delete/{id}', 'PostsController@delete')->name('post.delete');
 
-// 投稿の編集の更新処理
-Route::post('/update/{id}', 'PostsController@update')->name('post.update');
+
 
 
 //ルーティングの基本構文

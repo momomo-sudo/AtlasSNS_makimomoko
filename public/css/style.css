@@ -1,27 +1,176 @@
 @charset "utf-8";
 
-html {}
+html,
+body {}
 
 body {}
 
 /* header */
-header {
+#head {
+    display: flex;
     background: #186AC9;
 
 }
 
-/* 9/11追加のCSS */
-.menu_btn {
+.atlas {
+    width: 40%;
+    height: 70%;
+    padding: 10px;
+}
+
+/* 投稿画面 */
+/* アイコンと名前を横並びにするためのスタイル */
+.post-block {
+    display: flex;
+    /* フレックスボックスで横並びにする */
+    align-items: center;
+    /* アイコンとテキストを中央揃え */
+}
+
+.user-icon {
+    width: 50px;
+    /* アイコンの幅 */
+    height: 50px;
+    /* アイコンの高さ */
+    border-radius: 50%;
+    /* アイコンを丸くする */
+    margin-right: 10px;
+    /* アイコンと名前の間にスペースを追加 */
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+    /* 投稿内容を縦に並べる */
+}
+
+.post-name {
+    font-weight: bold;
+    /* ユーザー名を太字に */
+    margin-bottom: 5px;
+    /* 名前と投稿内容の間にスペースを追加 */
+}
+
+/* 上のエリア */
+.side_user {
+    display: flex;
+    background-color: darkgreen;
+    margin-left: auto;
+}
+
+.side_user p {
+    background-color: coral;
+    /* 水平方向の中央揃え */
+    text-align: center;
+
+}
+
+/* 投稿リストの親要素 */
+ul {
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-wrap: wrap;
+    /* 複数行にラップする */
+    padding: 0;
+    /* デフォルトのパディングをリセット */
+    list-style: none;
+    /* デフォルトのリストスタイルを削除 */
+}
+
+/* ここが投稿フォーム */
+.post_form {
+    background-color: cornflowerblue;
+    /* 要素を横並び */
+    display: flex;
+    justify-content: space-between;
+    /* 各アイテムを両端に配置 */
+    align-items: center;
+    /* アイテムの高さを揃える */
+    width: 100%;
+    /* フォーム全体を親要素いっぱいに広げる */
+    padding: 20px 50px 80px 50px;
     position: relative;
 }
 
+/* 投稿フォーム周りの余白 */
+.post_form input {
+    padding: 20px;
+}
+
+/* 投稿ボタン */
+.button {
+    position: absolute;
+    top: 100px;
+    /* post_form内の上から何pxか */
+    right: 150px;
+    /* post_form内の右から何pxか */
+    border-style: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    /* ↑この4つで枠線消した */
+
+}
+
+.button img {
+    border: none;
+    /* 角丸↓ */
+    border-radius: 5px;
+}
+
+.post_form img {
+    flex-shrink: 0;
+    /* 画像の縮小を防ぐ */
+}
+
+.post_form input {
+    flex-grow: 1;
+    /* 入力フィールドをできるだけ広げる */
+    margin: 0 10px;
+    /* 入力フィールドの左右に余白を追加 */
+}
+
+/* 各投稿項目 */
+.post-block {
+    display: flex;
+    /* フレックスボックスで横並びに */
+
+
+}
+
+.post-content {
+
+    background-color: #FFCC80;
+    margin: 0.5em auto;
+    width: 50%;
+}
+
+
+
+/* アコーディオンメニュー */
+.menu-box {
+    position: relative;
+    /* メニュー全体を相対位置に設定 */
+}
+
+.menu_btn {
+    position: relative;
+    background-color: #186AC9;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
 .menu_btn::after {
+    border-right: solid 2px #fff;
+    border-top: solid 2px #fff;
     content: "";
     display: block;
     height: 8px;
     position: absolute;
-    right: 25px;
-    top: 38%;
+    right: 10px;
+    top: 25%;
     transform: rotate(135deg);
     /* 最初の矢印は下向き */
     transition: transform .3s ease-in-out, top .3s ease-in-out;
@@ -35,58 +184,41 @@ header {
     /* 矢印を上向きに変える */
 }
 
-/*
-.menu_btn {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #5a6173;
-    color: #fff;
+.menu {
+    display: block;
+    /* リンクをブロック要素にしてクリック可能な領域を広げる */
 }
 
-.menu_list {
-    display: none; */
-
-/*アコーディオンの中身は、あらかじめ非表示にしておきます。 */
-/*
-    margin: 0;
-    padding-inline-start: 0px;
-    list-style: none;
-    background-color: #f2f2f2;
-
-    li {
-        padding: 5px 0 5px 10px;
-        border-bottom: solid 1px #fff;
-
-        a {
-            display: block;
-            text-decoration: none;
-            color: #000;
-        }
-    }
-}
-
- */
-
-/* 9/11追加ここまで */
-
-/* アコーディオンが開いている時の矢印のスタイル */
-
-
-/* main content */
+/* サイドエリア */
+/* 全体のレイアウトをフレックスボックスにする */
 #row {
     display: flex;
-    flex-flow: row wrap;
+    justify-content: space-between;
+    /* 投稿エリアとサイドエリアを左右に配置 */
 }
 
 #container {
-    flex: 0 0 80%;
+    background-color: aquamarine;
+    width: 100%;
+    /* 投稿エリアの幅を設定 */
+    min-height: 100vh;
+    /* 画面の高さに自動で調整 */
+    min-height: 100vh;
+    /* 画面の高さに自動で調整 */
 }
 
 #side-bar {
-    flex: 0 0 19%;
-    border-left: 1px solid #727272;
+    background-color: chocolate;
+    /* サイドエリアの背景色 */
+    width: 26%;
+    /* サイドエリアの幅を設定 */
+    padding: 20px;
+    /* 内側の余白を追加 */
+    /* スクロール可能にする場合 */
 }
 
+
+/* 検索ページ */
 /* 検索ワードがフォームの横に表示されるように */
 form {
     display: flex;
@@ -100,4 +232,64 @@ form input[type="text"] {
 form span {
     margin-left: 10px;
     font-weight: bold;
+}
+
+
+/* 編集機能 */
+
+
+.modal {
+    display: none;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal__bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal__content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
+
+/* 編集ボタン */
+.js-modal-open {
+    display: inline-block;
+    /* aタグは通常インライン要素なので、ブロック要素として扱う */
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/edit.png');
+    background-size: cover;
+    /* 画像が要素に収まるように調整 */
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+
+/* 削除ボタン */
+.btn_delete {
+    width: 50px;
+    height: 50px;
+    border: none;
+    background: url('../images/trash-h.png') no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    /* 背景画像の変更に0.6秒かける */
+}
+
+/* ホバー時に背景画像を変更 */
+.btn_delete:hover {
+    background-image: url('../images/trash.png');
 }

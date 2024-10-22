@@ -2,96 +2,73 @@
 
 @section('content') <!-- 子テンプレート側でcontentセクションに表示されるコンテンツを定義する。親テンプレート(login.blade.php)の、@yield('content')の位置に挿入される。 -->
 
-<h2>トップページです</h2>
-
 <!-- 投稿フォーム -->
-<div>
+<div id="container">
 
   <form action="{{ route('post.store') }}" method="POST"> <!-- 名前付きルート post.store に対応するURLを生成します -->
     <!-- routeの中にフォームの送信先となるルートの名前を指定する -->
     <!-- getとPOST、情報を登録するときはPOST、検索するときや画面を表示するときはGET -->
     @csrf
-    <div>
-      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="40" height="40">
+    <div class="post_form">
+      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
-      <div class="button">
-        <button type="submit"> <img class="post-btn" src="images/post.png" style="width: 50px; height: 50px;"></button>
-      </div>
+
+      <button type="submit" class="button"> <img class="post-btn" src="images/post.png" style="width: 40px; height: 40px;"></button>
+
+    </div>
   </form>
+
 
   <!-- 自分と、フォローしてる人の投稿を表示 -->
   @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
-    <tr>
-    <td><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" style="width: 50px; height: 50px;"></td>
+    <ul>
+    <li class="post-block">
 
-    <td>{{ $post->user->username }}</td>
-    <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。imagesがテーブルのカラム名 -->
-    <td>{{ $post->post }}</td>
-    <td>{{ $post->user->created_at }}</td>
+      <figure><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon"></figure>
+      <div class="post-content">
+      <div class="post-name">{{ $post->user->username }}</div>
+      <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。-->
+      <div>{{ $post->post }}</div>
+      <div>{{ $post->user->created_at }}</div>
+      </div>
 
 
-    <!-- 編集ボタン↓ -->
-    @if ($user_id == $post->user_id)
-    <form action="{{ route('post.edit', $post->id) }}">
-      <button class="btn_edit"></button>
-      <!-- HTTPの通信方法をGETにして、URLにパラメータを一緒に送れるようにする -->
-      <!-- aタグのhref属性に各リストのidカラムの値が表示されるように設置をした -->
-      <style>
-      .btn_edit {
-      width: 50px;
-      height: 50px;
-      background-image: url('images/edit.png');
-      background-size: cover;
-      /* 背景画像をボタン全体に合わせる */
-      background-position: center;
-      /* 画像の位置を中央に設定 */
-      border: none;
-      /* ボーダーを非表示 */
-      cursor: pointer;
-      }
-      </style>
-    </form>
+      @if ($user_id == $post->user_id)
+      <!-- ↑これで自分の投稿のみ編集・削除できる -->
 
-  @endif
+      <!-- モーダルの実装（編集機能） -->
+      <div class="content">
+      <!-- 投稿の編集ボタン -->
+      <a class="js-modal-open" href="#" post="{{ $post->post }}" post_id="{{ $post->id }}"></a>
+      </div>
 
-    <!-- 削除機能 -->
-    @if ($user_id == $post->user_id)
-    <form action="{{ route('post.delete', $post->id) }}" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+      <!-- モーダルの中身 -->
+      <div class="modal js-modal">
+      <div class="modal__bg js-modal-close"></div>
+      <div class="modal__content">
+      <form action="" method="POST">
+      <textarea name="post" class="modal_post"></textarea>
+      <input type="hidden" name="id" class="modal_id" value="{{ $post->id }}">
+      <input type="submit" value="更新">
+      @method('PATCH')
+      {{ csrf_field() }}
+      </form>
+      <a class="js-modal-close" href="">閉じる</a>
+      </div>
+      </div>
+
+      <!-- 削除機能 -->
+
+      <form action="{{ route('post.delete', $post->id) }}" method="POST" onsubmit="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+      @csrf
+      @method('DELETE')
       <button class="btn_delete"></button>
-      <style>
-      .btn_delete {
-      width: 50px;
-      height: 50px;
-      background-image: url('images/trash-h.png');
-      background-size: cover;
-      /* 背景画像をボタン全体に合わせる */
-      background-position: center;
-      /* 画像の位置を中央に設定 */
-      border: none;
-      /* ボーダーを非表示 */
-      cursor: pointer;
-      }
+      </form>
 
-      .btn_delete:hover {
-      background-image: url('images/trash.png');
-      -webkit-transition: .2s ease-in-out;
-      transition: .2s ease-in-out;
-      }
-      </style>
-
-    </form>
-  @endif
-    <!-- ・ユーザーアイコン
-    ・ユーザー名
-    ・投稿内容
-    ・投稿日時
-    ・投稿編集ボタン
-    ・投稿削除ボタン -->
-    </tr>
+    @endif
+    </li>
+    </ul>
   @endforeach
-</div>
-
 
 </div>
-
 @endsection

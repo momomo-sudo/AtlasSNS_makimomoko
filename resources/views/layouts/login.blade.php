@@ -24,11 +24,11 @@
     <header>
         <div id="head">
             <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
-            <img src="{{ asset('/images/atlas.png') }}" alt="Atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
+            <img src="{{ asset('/images/atlas.png') }}" alt="Atlas" class="atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
             </a>
         </h1>
             <div class="side_user">
-                <p>{{ Auth::user()->username }} さん <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50"></p>
+                <p>{{ Auth::user()->username }} さん</p>
 
                 <!-- imagesフォルダ内のユーザーの画像を表示する -->
                 <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。
@@ -36,7 +36,7 @@
 
                 <!-- アコーディオンメニュー -->
                 <div class="menu-box">
-                    <button type="button" id="menu_btn" class="menu_btn">メニューボタン（クリックして開閉）</button>
+                    <button type="button" id="menu_btn" class="menu_btn"></button>
                     <ul class="menu"><!-- 今回消したり表示したいのはここ-->
                         <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
                         <!-- ここがスタート、web.phpに繋げる -->
@@ -46,35 +46,36 @@
                         <!-- ここからスタートしてweb.phpに繋げている -->
                     </ul>
                 </div>
+                <!-- アイコン -->
+                <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
             </div>
         </div>
     </header>
 
+    <!-- 投稿エリア -->
     <div id="row">
-        <div id="container">
-            @yield('content')
-        </div>
+        @yield('content')
+
+
+        <!-- サイドエリア -->
         <div id="side-bar">
-            <div id="confirm">
-                <p>{{ Auth::user()->username }}さんの</p>
-                <div>
-                    <p>フォロー数</p>
-                    <p>〇〇名</p>
-                </div>
-                <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
-                <!-- ここからweb.phpに繋げる -->
-                <div>
-                    <p>フォロワー数</p>
-                    <p>〇〇名</p>
-                </div>
-                <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
+            <p>{{ Auth::user()->username }}さんの</p>
+            <div>
+                <p>フォロー数</p>
+                <p><span>{{ $follow_count }}</span>名</p>
             </div>
+            <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
+            <!-- ここからweb.phpに繋げる -->
+            <div>
+                <p>フォロワー数</p>
+                <p><span>{{ $follower_count }}</span>名</p>
+            </div>
+            <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
             <p class="search"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
         </div>
     </div>
-    <!-- フッターエリア -->
-    <footer>
-    </footer>
+
+
     <!-- Javascript・jQueryのファイルリンク -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{ asset('/js/script.js') }}"></script>

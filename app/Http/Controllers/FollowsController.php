@@ -10,6 +10,14 @@ class FollowsController extends Controller
     //
     public function followList()
     {
+        //ユーザーのアクセス制限
+        if (Auth::check()) {
+            $follows = Auth::user()->follows();
+        } else {
+
+            return redirect()->route('login');
+        }
+
         // 現在ログインしているユーザーを取得
         $user = Auth::user();
         // フォローしているユーザーを eager load で取得
@@ -17,10 +25,7 @@ class FollowsController extends Controller
         // フォローしているユーザーの投稿を取得
         $posts = Post::query()->whereIn('user_id', $user->follows()->pluck('followed_id'))->latest()->get();
 
-        // デバッグ用にデータを確認
-        if ($followed->isEmpty()) {
-            return redirect()->route('login');
-        }
+
 
         // ビューにフォローしているユーザー情報を渡す
         return view('follows.followList', compact('followed', 'posts'));//followsフォルダ内のfollowList.blade.phpに繋げる
@@ -29,14 +34,21 @@ class FollowsController extends Controller
     }
     public function followerList()
     {
+        //アクセス制限
+        if (Auth::check()) {
+            $follows = Auth::user()->follows();
+        } else {
+            //もしユーザーデータが存在しない場合、ログインページにリダイレクトする
+            return redirect()->route('login');
+        }
+
+
         $user = Auth::user();
         $followers = $user->followers()->get();//userモデルのfollowersメソッド
         // フォローされているユーザーの投稿を取得
         $posts = Post::query()->whereIn('user_id', $user->followers()->pluck('following_id'))->latest()->get();
-        if ($followers->isEmpty()) {//もしユーザーデータが存在しない場合、ログインページにリダイレクトする
-            return redirect()->route('login');
-        }
         return view('follows.followerList', compact('followers', 'posts')); //followsフォルダ内のfollowerList.blade.phpに繋げる
+
     }
 
     public function store($userId)

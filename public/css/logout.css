@@ -1,10 +1,94 @@
 @charset "UTF-8";
 
-html{
-    height: 100%;
+html {}
+
+body {
+    background: #186AC9;
+
+    /* 背景のグラデ */
+    height: 100vh;
+    background-image: linear-gradient(0deg, #ff0 0%, #186AC9 40%);
 }
 
-body{
-    height: 100%;
-    background: #186AC9;
+header {
+    width: 100%;
+    position: relative;
+    top: 190px;
+    /* 中央揃え */
+    text-align: center;
+}
+
+header h1 img {
+    width: 150px;
+}
+
+header p {
+    font-size: 35px;
+    font-family: Verdana;
+    color: #fff;
+}
+
+#container {
+    background-color: rgba(0, 0, 0, 0.4);
+    position: relative;
+    width: 18%;
+    height: auto;
+    color: #fff;
+    margin: 100px auto;
+    padding: 30px;
+    top: 130px;
+    /* ↓角丸 */
+    border-radius: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 100%;
+}
+
+.input {
+    margin-top: 7px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.login_title {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.login_link {
+    position: relative;
+    top: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.btn-block {
+    display: block;
+    /* ブロック要素にして幅を調整 */
+    margin-left: auto;
+    /* 右に寄せる */
+    background-color: #f33;
+    width: auto;
+    padding: 5px 30px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+}
+
+a {
+    color: #fff;
+}
+
+.form_area {
+    padding: 10px;
 }

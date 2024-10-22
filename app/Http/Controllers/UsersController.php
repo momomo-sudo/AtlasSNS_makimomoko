@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Post;
 use App\Follow;
+use App\Models\Follower;
 
 
 class UsersController extends Controller
@@ -58,6 +59,11 @@ class UsersController extends Controller
 
     public function search(Request $request)//web.phpから来た処理をusersフォルダ内のsearch.bladeに繋げている。
     {
+        //アクセス制限
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         // リクエストから検索クエリを取得
         $username = $request->input('username');
         // dd($query);
@@ -78,9 +84,11 @@ class UsersController extends Controller
         return view('users.search', ['users' => $users, 'username' => $username]);
     }
 
-    public function show($id)
+    public function show($id, Follower $follower)
     {
         $user = User::find($id); // ページを表示する対象のユーザーを取得
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
         // dd($user);
         // フォローしているユーザーのリストを取得
         if (!$user) {//もしユーザーデータが存在しない場合、ログインページにリダイレクトする
@@ -90,8 +98,10 @@ class UsersController extends Controller
         $posts = Post::query()->whereIn('user_id', $user)->latest()->get(); //latest→作成日時(created_at)の最新順で表示
         return view('users.usersProfile', [
             'user' => $user,
-            'posts' => $posts
+            'posts' => $posts,
             // フォローしているユーザーのリストをビューに渡す
+            'follow_count' => $follow_count,
+            'follower_count' => $follower_count
         ]);
     }
 

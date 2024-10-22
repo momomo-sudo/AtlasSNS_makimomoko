@@ -1,28 +1,25 @@
 @extends('layouts.logout')
 
 @section('content')
-<!-- 適切なURLを入力してください -->
+
+<h2 class="login_title">新規ユーザー登録</h2>
+
 {!! Form::open(['url' => '/register']) !!}
-
-<h2>新規ユーザー登録</h2>
-
 {{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+{{ Form::text('username', null, ['class' => 'input']) }}
 
 {{ Form::label('メールアドレス') }}
-{{ Form::text('mail',null,['class' => 'input']) }}
+{{ Form::text('mail', null, ['class' => 'input']) }}
 
 {{ Form::label('パスワード') }}
-{{ Form::password('password',null,['class' => 'input']) }}
+{{ Form::password('password', ['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::password('password_confirmation',null,['class' => 'input']) }}
+{{ Form::password('password_confirmation', ['class' => 'input']) }}
 
-{{ Form::submit('登録') }}
-
-<p><a href="/login">ログイン画面へ戻る</a></p>
-
+{{ Form::submit('新規登録', ['class' => 'btn-block']) }}
 {!! Form::close() !!}
 
+<p class="login_link"><a href="/login">ログイン画面に戻る</a></p>
 
 @endsection

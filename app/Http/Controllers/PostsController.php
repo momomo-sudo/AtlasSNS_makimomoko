@@ -40,6 +40,11 @@ class PostsController extends Controller
     /**投稿機能**/
     public function store(Request $request) //Requestクラス
     {
+        //バリデーション
+        $request->validate([
+            'content' => 'required|max:150',
+        ]);
+
         $user_id = Auth::user()->id;  //Auth::userだと、ログインしている人の情報を全部出してくれ
         $post = $request->input('content');
 
@@ -49,35 +54,31 @@ class PostsController extends Controller
         // dd($itou);//ddはカッコの中になんの値が入っているかをみる。カッコの中身を見せてくれる
 
         Post::create(['user_id' => $user_id, 'post' => $post,]);  // 新しい投稿を作成して保存
-        $request->validate([
-            'post' => 'required|max:150',
-        ]);
+
         return redirect('/top'); // 投稿一覧ページにリダイレクト
     }
 
 
     /** 編集画面の表示*/
-    public function edit($id)//ルーティングで記述した「{id}」とメソッドの引数においた「$id」のように、名前を同じにしておく必要がある
+    public function update(Request $request, $id)
     {
-        //$postは、メソッド内で使用される変数で、指定されたIDに対応するPostモデルのインスタンス（データベースのレコード・設計図（クラス））を格納します。
-        $post = Post::find($id);//user_idに基づくレコード1件を取得している。
-        return view('posts.edit', compact('post'));
-    }
+        // IDから該当する投稿を取得
+        $post = Post::find($id);
 
-    /**更新処理*/
-    public function update(Request $request)
-    {
         // バリデーション
         $request->validate([
-            'upPost' => 'required|string|max:150',
-            'post_id' => 'required|integer|exists:posts,id',
+            'post' => 'required|string|max:150',
         ]);
 
-        $id = $request->input('post_id');// フォームから送信された投稿IDを取得
-        $up_post = $request->input('upPost');// フォームから送信された新しい投稿内容を取得
-        // 指定されたIDの投稿を更新
-        Post::where('id', $id)->update(['post' => $up_post]);
 
+
+        // 投稿内容を更新
+        $post->post = $request->input('post');
+
+        // 投稿を保存
+        $post->save();
+
+        // リダイレクトもしくはレスポンス
         return redirect('/top');
     }
 

@@ -82,7 +82,8 @@ ul {
 }
 
 /* ここが投稿フォーム */
-.post_form {
+.post_form,
+.follow-list {
     /* 要素を横並び */
     display: flex;
     justify-content: space-between;
@@ -301,6 +302,10 @@ ul {
     /* 縦に並べる */
     padding: 10% 5% 15% 5%;
     border-bottom: 1px solid #999;
+}
+
+.side-follow p {
+    display: flex;
 }
 
 /* フォロー数エリア */

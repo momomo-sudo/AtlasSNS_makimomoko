@@ -65,13 +65,13 @@
                     <p>フォロー数</p>
                     <p><span>{{ $follow_count }}</span>名</p>
                 </div>
-                <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
+                <p><a href="{{ URL::to('/follow-list') }}" class="btn-follow">フォローリスト</a></p>
                 <!-- ここからweb.phpに繋げる -->
                 <div class="follower-count">
                     <p>フォロワー数</p>
                     <p><span>{{ $follower_count }}</span>名</p>
                 </div>
-                <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
+                <p><a href="{{ URL::to('/follower-list') }}" class="btn-follower">フォロワーリスト</a></p>
             </div>
             <p class="search"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
         </div>

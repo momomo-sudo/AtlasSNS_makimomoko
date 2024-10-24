@@ -3,19 +3,27 @@
 html,
 body {}
 
-body {}
+a {
+    color: #fff;
+}
 
 /* header */
 #head {
     display: flex;
     background: #186AC9;
+    justify-content: center;
+    /* 水平方向に中央揃え */
+    align-items: center;
+    /* 垂直方向に中央揃え */
 
 }
 
+
+
 .atlas {
-    width: 40%;
-    height: 70%;
     padding: 10px;
+    height: 40px;
+    /* 高さを自動調整 */
 }
 
 /* 投稿画面 */
@@ -25,6 +33,7 @@ body {}
     /* フレックスボックスで横並びにする */
     align-items: center;
     /* アイコンとテキストを中央揃え */
+    position: relative;
 }
 
 .user-icon {
@@ -38,17 +47,12 @@ body {}
     /* アイコンと名前の間にスペースを追加 */
 }
 
-.post-content {
-    display: flex;
-    flex-direction: column;
-    /* 投稿内容を縦に並べる */
-}
-
 .post-name {
     font-weight: bold;
     /* ユーザー名を太字に */
     margin-bottom: 5px;
     /* 名前と投稿内容の間にスペースを追加 */
+
 }
 
 /* 上のエリア */
@@ -79,7 +83,6 @@ ul {
 
 /* ここが投稿フォーム */
 .post_form {
-    background-color: cornflowerblue;
     /* 要素を横並び */
     display: flex;
     justify-content: space-between;
@@ -90,11 +93,19 @@ ul {
     /* フォーム全体を親要素いっぱいに広げる */
     padding: 20px 50px 80px 50px;
     position: relative;
+    /* 投稿エリア下の枠線 */
+    border-bottom: 7px solid #ccc;
 }
 
 /* 投稿フォーム周りの余白 */
 .post_form input {
     padding: 20px;
+    border-style: none;
+}
+
+.post_form input::placeholder {
+    /* 文字色は薄いグレー */
+    color: #ccc;
 }
 
 /* 投稿ボタン */
@@ -109,7 +120,7 @@ ul {
     margin: 0;
     background: none;
     /* ↑この4つで枠線消した */
-
+    cursor: pointer;
 }
 
 .button img {
@@ -133,18 +144,84 @@ ul {
 /* 各投稿項目 */
 .post-block {
     display: flex;
-    /* フレックスボックスで横並びに */
+    /* フレックスボックスを使用 */
+    flex-flow: column;
+    /* 縦並び */
+    /* 親要素内で右よせ */
+    margin: 0 0 0 100px;
+    padding: 10px;
+    width: 90%;
+    position: relative;
+    border-bottom: 1px solid #999;
+}
 
-
+.post {
+    /* アイコンと投稿を横並び */
+    display: flex;
+    width: 100%;
 }
 
 .post-content {
+    /* display: flex; */
+    position: relative;
+    align-items: center;
+    /* 縦方向の中央揃え */
+    flex-direction: column;
+    /* 投稿内容を縦に並べる */
+    margin-bottom: 10px;
+    padding: auto 50px;
+    width: 100%;
+    height: 90%;
 
-    background-color: #FFCC80;
-    margin: 0.5em auto;
-    width: 50%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    /* 1列目は自動サイズ、2列目は残りのスペースを使用 */
+    gap: 10px;
+    /* 列間のスペースを設定 */
 }
 
+.created_at {
+    margin-left: auto;
+    /* 左側にスペースを持たせて右端に寄せる */
+    font-size: smaller;
+    /* フォントサイズを小さくする（任意） */
+    color: black;
+    /* 色を薄くする（任意） */
+}
+
+/* ボタンエリア */
+ul {
+    position: relative;
+}
+
+.button_area {
+    /* 横並び */
+    margin-left: auto;
+    /* 左側のマージンを自動にして右寄せ */
+
+    display: flex;
+    top: 40%;
+    right: 20px;
+}
+
+/* 編集ボタン */
+.content {
+    margin: 0 0 0 auto;
+    padding: 0px 0px 0px 0px;
+}
+
+/* 削除ボタン */
+.btn_delete {
+    margin: 0px 0px 0px 0px;
+    border-radius: 5px;
+
+}
+
+/* 投稿時間 */
+.created_at {
+    margin-left: auto;
+    /* 左側のマージンを自動にして右寄せ */
+}
 
 
 /* アコーディオンメニュー */
@@ -198,7 +275,6 @@ ul {
 }
 
 #container {
-    background-color: aquamarine;
     width: 100%;
     /* 投稿エリアの幅を設定 */
     min-height: 100vh;
@@ -208,15 +284,82 @@ ul {
 }
 
 #side-bar {
-    background-color: chocolate;
-    /* サイドエリアの背景色 */
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-direction: column;
+    /* 縦に並べる */
     width: 26%;
     /* サイドエリアの幅を設定 */
-    padding: 20px;
-    /* 内側の余白を追加 */
-    /* スクロール可能にする場合 */
+    border-left: 1px solid #333;
 }
 
+/* フォロー数とフォローボタンエリア */
+.side-follow {
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-direction: column;
+    /* 縦に並べる */
+    padding: 10% 5% 15% 5%;
+    border-bottom: 1px solid #999;
+}
+
+/* フォロー数エリア */
+.follow-count {
+    display: flex;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.follow-count p {
+    margin-right: 20%;
+}
+
+.follower-count {
+    display: flex;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
+.follower-count p {
+    margin-right: 13%;
+}
+
+/* フォローリストボタン */
+.btn-follow,
+.btn-follower {
+    display: flex;
+    justify-content: center;
+    /* 水平方向の中央揃え */
+    align-items: center;
+    /* 垂直方向の中央揃え */
+    margin-left: auto;
+    /* 右に寄せる */
+    background-color: #03c;
+    padding: 5%;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 17px;
+    border: none;
+}
+
+
+/* 検索ボタン */
+.search {
+    margin-top: 10%;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+    height: 3%;
+}
+
+.search a {
+    display: inline-block;
+    padding: 4% 7%;
+    width: 60%;
+    background-color: #03c;
+    border-radius: 10px;
+}
 
 /* 検索ページ */
 /* 検索ワードがフォームの横に表示されるように */
@@ -282,7 +425,7 @@ form span {
     width: 50px;
     height: 50px;
     border: none;
-    background: url('../images/trash-h.png') no-repeat center;
+    background: url('../images/trash.png') no-repeat center;
     background-size: cover;
     cursor: pointer;
     transition: 0.3s ease-in-out;
@@ -291,5 +434,5 @@ form span {
 
 /* ホバー時に背景画像を変更 */
 .btn_delete:hover {
-    background-image: url('../images/trash.png');
+    background-image: url('../images/trash-h.png');
 }

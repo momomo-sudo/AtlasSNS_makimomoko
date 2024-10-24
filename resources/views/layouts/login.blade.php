@@ -23,10 +23,10 @@
     <!-- ヘッダーエリア -->
     <header>
         <div id="head">
-            <h1><a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
-            <img src="{{ asset('/images/atlas.png') }}" alt="Atlas" class="atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
+            <a href="{{ URL::to('/top') }}"> <!-- ページの最上部へのリンク -->
+                <img src="{{ asset('/images/atlas.png') }}" alt="Atlas" class="atlas"> <!-- 画像と画像の代わりのテキスト。assetは Laravelの画像の呼び出し -->
             </a>
-        </h1>
+
             <div class="side_user">
                 <p>{{ Auth::user()->username }} さん</p>
 
@@ -59,18 +59,20 @@
 
         <!-- サイドエリア -->
         <div id="side-bar">
-            <p>{{ Auth::user()->username }}さんの</p>
-            <div>
-                <p>フォロー数</p>
-                <p><span>{{ $follow_count }}</span>名</p>
+            <div class="side-follow">
+                <p>{{ Auth::user()->username }}さんの</p>
+                <div class="follow-count">
+                    <p>フォロー数</p>
+                    <p><span>{{ $follow_count }}</span>名</p>
+                </div>
+                <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
+                <!-- ここからweb.phpに繋げる -->
+                <div class="follower-count">
+                    <p>フォロワー数</p>
+                    <p><span>{{ $follower_count }}</span>名</p>
+                </div>
+                <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
             </div>
-            <p class="btn-follow"><a href="{{ URL::to('/follow-list') }}">フォローリスト</a></p>
-            <!-- ここからweb.phpに繋げる -->
-            <div>
-                <p>フォロワー数</p>
-                <p><span>{{ $follower_count }}</span>名</p>
-            </div>
-            <p class="btn-follower"><a href="{{ URL::to('/follower-list') }}">フォロワーリスト</a></p>
             <p class="search"><a href="{{ URL::to('/search') }}">ユーザー検索</a></p>
         </div>
     </div>

@@ -28,6 +28,7 @@ header p {
     color: #fff;
 }
 
+/* 黒いエリア */
 #container {
     background-color: rgba(0, 0, 0, 0.4);
     position: relative;
@@ -39,6 +40,7 @@ header p {
     top: 130px;
     /* ↓角丸 */
     border-radius: 10px;
+    text-align: center;
 }
 
 label {
@@ -54,6 +56,8 @@ label {
     border-radius: 10px;
     border: none;
     outline: none;
+    box-sizing: border-box;
+    /* これでパディングが幅に含まれます */
 }
 
 .login_title {
@@ -91,4 +95,35 @@ a {
 
 .form_area {
     padding: 10px;
+}
+
+/* 新規登録後の画面 */
+#clear {
+    line-height: 1.4;
+    /* 行間の高さを設定（1.3倍に調整） */
+}
+
+.registration-complete {
+    font-weight: bold;
+    /* 太字 */
+    padding-bottom: 15%;
+}
+
+
+
+.welcome-message {
+    margin-bottom: 5%;
+}
+
+/* ログイン画面へのボタン */
+.btn {
+    display: inline-block;
+    background-color: #f33;
+    width: auto;
+    padding: 5% 10%;
+    margin: 10%;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 20px;
+    border: none;
 }

@@ -41,23 +41,23 @@
       <div class="content">
       <!-- 投稿の編集ボタン -->
       <a class="js-modal-open" href="#" post="{{ $post->post }}" post_id="{{ $post->id }}"></a>
-
+      </div>
 
       <!-- モーダルの中身 -->
       <div class="modal js-modal">
       <div class="modal__bg js-modal-close"></div>
       <div class="modal__content">
-        <form action="" method="POST">
+      <form action="" method="POST">
         <textarea name="post" class="modal_post"></textarea>
         <input type="hidden" name="id" class="modal_id" value="{{ $post->id }}">
-        <input type="submit" value="更新">
+        <input type="submit" class="modal-btn">
         @method('PATCH')
         {{ csrf_field() }}
-        </form>
-        <a class="js-modal-close" href="">閉じる</a>
+      </form>
+      <a class="js-modal-close" href="">閉じる</a>
       </div>
       </div>
-      </div>
+
 
       <!-- 削除機能 -->
 

@@ -153,7 +153,7 @@ ul {
     padding: 10px;
     width: 90%;
     position: relative;
-    border-bottom: 1px solid #999;
+
 }
 
 .post {
@@ -170,10 +170,8 @@ ul {
     flex-direction: column;
     /* 投稿内容を縦に並べる */
     margin-bottom: 10px;
-    padding: auto 50px;
     width: 100%;
     height: 90%;
-
     display: grid;
     grid-template-columns: auto 1fr;
     /* 1列目は自動サイズ、2列目は残りのスペースを使用 */
@@ -193,6 +191,8 @@ ul {
 /* ボタンエリア */
 ul {
     position: relative;
+    /* 各投稿ごとに下線 */
+    border-bottom: 1px solid #999;
 }
 
 .button_area {
@@ -385,24 +385,28 @@ form span {
 
 /* 編集機能 */
 
-
 .modal {
     display: none;
-    height: 100vh;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
+    height: 100vh;
+    justify-content: center;
+    /* 横中央に配置 */
+    align-items: center;
+    /* 縦中央に配置 */
 }
 
 .modal__bg {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.1);
     height: 100vh;
     position: absolute;
     width: 100%;
 }
 
 .modal__content {
-    background: #fff;
+    background-color: #186AC9;
     left: 50%;
     padding: 40px;
     position: absolute;
@@ -411,8 +415,11 @@ form span {
     width: 60%;
 }
 
+
+
 /* 編集ボタン */
-.js-modal-open {
+.js-modal-open,
+.modal-btn {
     display: inline-block;
     /* aタグは通常インライン要素なので、ブロック要素として扱う */
     width: 50px;

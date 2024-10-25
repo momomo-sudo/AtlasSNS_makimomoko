@@ -1,14 +1,13 @@
 @charset "UTF-8";
 
-html {}
-
-body {
+html {
     background: #186AC9;
-
     /* 背景のグラデ */
     height: 100vh;
     background-image: linear-gradient(0deg, #ff0 0%, #186AC9 40%);
 }
+
+body {}
 
 header {
     width: 100%;

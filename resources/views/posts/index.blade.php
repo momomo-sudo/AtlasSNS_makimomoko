@@ -63,7 +63,7 @@
 
       <form action="{{ route('post.delete', $post->id) }}" method="POST" onsubmit="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
       @csrf
-      @method('DELETE')
+      @method('GET')
       <button class="btn_delete"></button>
       </form>
       </div>

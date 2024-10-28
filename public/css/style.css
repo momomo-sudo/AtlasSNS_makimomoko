@@ -27,14 +27,6 @@ a {
 }
 
 /* 投稿画面 */
-/* アイコンと名前を横並びにするためのスタイル */
-.post-block {
-    display: flex;
-    /* フレックスボックスで横並びにする */
-    align-items: center;
-    /* アイコンとテキストを中央揃え */
-    position: relative;
-}
 
 .user-icon {
     width: 50px;
@@ -58,15 +50,19 @@ a {
 /* 上のエリア */
 .side_user {
     display: flex;
-    background-color: darkgreen;
     margin-left: auto;
 }
 
 .side_user p {
-    background-color: coral;
     /* 水平方向の中央揃え */
     text-align: center;
+    line-height: 80px;
+    margin: 0;
+    color: #fff;
+}
 
+.suffix {
+    margin-left: 10px;
 }
 
 /* 投稿リストの親要素 */
@@ -81,9 +77,8 @@ ul {
     /* デフォルトのリストスタイルを削除 */
 }
 
-/* ここが投稿フォーム */
-.post_form,
-.follow-list {
+/* 投稿フォーム */
+.post_form {
     /* 要素を横並び */
     display: flex;
     justify-content: space-between;
@@ -91,12 +86,14 @@ ul {
     align-items: center;
     /* アイテムの高さを揃える */
     width: 100%;
+    height: 100px;
     /* フォーム全体を親要素いっぱいに広げる */
     padding: 20px 50px 80px 50px;
     position: relative;
     /* 投稿エリア下の枠線 */
     border-bottom: 7px solid #ccc;
 }
+
 
 /* 投稿フォーム周りの余白 */
 .post_form input {
@@ -146,6 +143,8 @@ ul {
 .post-block {
     display: flex;
     /* フレックスボックスを使用 */
+    align-items: center;
+    /* アイコンとテキストを中央揃え */
     flex-flow: column;
     /* 縦並び */
     /* 親要素内で右よせ */
@@ -233,11 +232,12 @@ ul {
 
 .menu_btn {
     position: relative;
-    background-color: #186AC9;
     color: #fff;
     cursor: pointer;
-    font-size: 16px;
     padding: 10px 20px;
+    border-style: none;
+    background: none;
+    margin-top: 70%;
 }
 
 .menu_btn::after {
@@ -263,8 +263,59 @@ ul {
 }
 
 .menu {
+    display: none;
+    /* 最初は非表示 */
+    position: absolute;
+    /* ボタンの下に表示 */
+    top: 100%;
+    /* ボタンの下に配置 */
+    left: 0;
+    /* 左揃え */
+    /* z-index: 1000; */
+    /* 他の要素より前面に表示 */
+    border: 2px solid #333;
+    /* ボーダーを設定（必要に応じて調整） */
+    width: 370%;
+    margin-left: -50px;
+    /* 左に10pxずらすことでリンクを広げる */
+    background-color: #fff;
+    /* ボタンの背景色 */
+}
+
+.menu li {
+    width: 100%;
+    border-bottom: 1px solid #999;
+}
+
+.menu li:hover {
+    background-color: #009;
+}
+
+.menu a {
     display: block;
-    /* リンクをブロック要素にしてクリック可能な領域を広げる */
+    /* リンクをブロック要素にして改行 */
+    padding: 10px 15px;
+    /* 内側の余白を追加 */
+    text-decoration: none;
+    /* 下線を消す */
+    border-radius: 5px;
+    /* 角を丸くする */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.menu a:hover {
+    color: #fff;
+}
+
+.menu .home,
+.profile,
+.center {
+    color: #333;
+}
+
+.side_user img {
+    padding: 15px;
 }
 
 /* サイドエリア */
@@ -347,23 +398,24 @@ ul {
     border: none;
 }
 
-
-/* 検索ボタン */
-.search {
-    margin-top: 10%;
-    text-align: center;
-    color: #fff;
-    font-size: 20px;
-    border: none;
-    height: 3%;
+.btn-follow {
+    padding: 5% 8.5%;
 }
 
-.search a {
-    display: inline-block;
-    padding: 4% 7%;
-    width: 60%;
+/* サイドエリアの検索ボタン */
+.search-btn {
+    display: flex;
+    justify-content: center;
+    /* 水平方向の中央揃え */
+    align-items: center;
+    /* 垂直方向の中央揃え */
+    margin: 8%;
     background-color: #03c;
+    padding: 5%;
     border-radius: 10px;
+    color: #fff;
+    font-size: 17px;
+    border: none;
 }
 
 /* 検索ページ */
@@ -381,6 +433,84 @@ form span {
     margin-left: 10px;
     font-weight: bold;
 }
+
+/* ここがフォローリスト画面の上や検索フォーム */
+.main_area {
+    /* 要素を横並び */
+    display: flex;
+    align-items: center;
+    /* アイテムの高さを揃える */
+    width: 100%;
+    height: 100px;
+    /* フォーム全体を親要素いっぱいに広げる */
+    padding: 20px 50px 80px 20px;
+    position: relative;
+    /* 投稿エリア下の枠線 */
+    border-bottom: 7px solid #ccc;
+}
+
+.main_child {
+    position: absolute;
+    padding: 20px;
+    /* 余白指定 */
+    top: 0;
+    /* 位置指定 */
+    bottom: 0;
+    /* 位置指定 */
+    left: 0;
+    /* 位置指定 */
+    right: 0;
+    /* 位置指定 */
+    display: flex;
+    align-items: center;
+    /* 垂直方向に中央揃え */
+}
+
+/* 検索フォーム */
+.search-form {
+    padding: 2.3%;
+    width: 40%;
+}
+
+/* 検索ページの検索ボタン（虫眼鏡） */
+.magnifying-glass {
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.searchArea {
+    display: flex;
+    /* フレックスボックスを使用 */
+    flex-flow: column;
+    /* 縦並び */
+    /* 親要素内で右よせ */
+    padding: 10px;
+    width: 90%;
+    position: relative;
+}
+
+.searchArea button {
+    cursor: pointer;
+}
+
+.searchList {
+    /* アイコンと名前とボタン */
+    /* 横並び */
+    display: flex;
+}
+
+.search {
+    /* 各ユーザー一覧*/
+    display: flex;
+    /* フレックスボックスを使用 */
+    margin-top: 3%;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    border: none;
+}
+
 
 
 /* 編集機能 */

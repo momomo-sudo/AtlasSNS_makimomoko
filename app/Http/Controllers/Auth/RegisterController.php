@@ -44,6 +44,14 @@ class RegisterController extends Controller
 
         if ($request->isMethod('post')) {//isMethod() 引数に指定した文字列とHTTP動詞が一致するかを判定する、一致すればtrueが、しなければfalseが返る
 
+            // バリデーション
+            $request->validate([
+                'username' => 'required|max:12|min:2',
+                'mail' => 'required|email|max:40|min:5|unique:users,mail',
+                'password' => 'required|alpha-num|max:20|min:8', //8文字以上、英数字等
+                'password_confirmation' => 'required|alpha-num|max:20|min:8|same:password',
+            ]);
+
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
@@ -62,12 +70,6 @@ class RegisterController extends Controller
         return view('auth.register');
 
 
-        $request->validate([
-            'username' => 'required|max:12|min:2',
-            'mail' => 'required|email|max:40|min:5|unique:users,mail',
-            'password' => 'required|alpha-num|max:20|min:8', //8文字以上、英数字等
-            'password_confirmation' => 'required|alpha-num|max:20|min:8|same:password',
-        ]);
 
 
     }

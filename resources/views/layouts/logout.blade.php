@@ -25,7 +25,7 @@
     <h1><img src="{{ asset('images/atlas.png') }}"></h1>
     <p>Social Network Service</p>
   </header>
-  <div id="container">
+  <div id="form-area">
     <!-- 黒いエリア -->
     @yield('content')
   </div>

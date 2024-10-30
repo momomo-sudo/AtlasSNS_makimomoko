@@ -449,27 +449,30 @@ form span {
     border-bottom: 7px solid #ccc;
 }
 
-.main_child {
-    position: absolute;
-    padding: 20px;
-    /* 余白指定 */
-    top: 0;
-    /* 位置指定 */
-    bottom: 0;
-    /* 位置指定 */
-    left: 0;
-    /* 位置指定 */
-    right: 0;
-    /* 位置指定 */
-    display: flex;
-    align-items: center;
-    /* 垂直方向に中央揃え */
-}
 
 /* 検索フォーム */
+
+.ul-search {
+    border-bottom: none;
+}
+
 .search-form {
-    padding: 2.3%;
-    width: 40%;
+    position: absolute;
+    padding: 15px;
+    padding-left: 50px;
+    width: 100%;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    height: 3.2rem;
+}
+
+.search-text {
+    padding: 15px;
+    width: 30%;
 }
 
 /* 検索ページの検索ボタン（虫眼鏡） */
@@ -482,13 +485,18 @@ form span {
 .searchArea {
     display: flex;
     /* フレックスボックスを使用 */
+    align-items: center;
+    /* アイコンとテキストを中央揃え */
     flex-flow: column;
     /* 縦並び */
     /* 親要素内で右よせ */
+    margin: 0 0 0 100px;
     padding: 10px;
-    width: 90%;
     position: relative;
+    /* 下線を消す */
+    border-bottom: none;
 }
+
 
 .searchArea button {
     cursor: pointer;
@@ -498,19 +506,32 @@ form span {
     /* アイコンと名前とボタン */
     /* 横並び */
     display: flex;
-}
-
-.search {
-    /* 各ユーザー一覧*/
-    display: flex;
-    /* フレックスボックスを使用 */
-    margin-top: 3%;
+    align-items: center;
+    justify-content: space-between;
+    /* 名前とボタンを左右に配置 */
     width: 100%;
-    text-align: center;
-    font-size: 20px;
-    border: none;
+    padding: 20px;
 }
 
+.icon-name {
+    display: flex;
+    /* フレックスボックスを有効にする */
+    align-items: center;
+}
+
+.icon-name img {
+    margin-right: 30px;
+}
+
+/* フォロー、フォロー解除ボタン */
+.follow-btn,
+.unfollow-btn {
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    background: none;
+    margin-right: 250px;
+}
 
 
 /* 編集機能 */
@@ -577,4 +598,16 @@ form span {
 /* ホバー時に背景画像を変更 */
 .btn_delete:hover {
     background-image: url('../images/trash-h.png');
+}
+
+
+/* フォロー、フォロワーリストページ */
+
+.f-postArea {
+    width: 100%;
+    border-bottom: none;
+}
+
+.follow-post {
+    /* width: 100%; */
 }

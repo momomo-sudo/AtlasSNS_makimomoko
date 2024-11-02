@@ -6,14 +6,14 @@
 <body>
   <div id="container">
     <ul>
-
       <div class="main_area">
         <h1>あなたがフォローしているユーザーの投稿</h1>
         <!-- フォローしている人のアイコン表示 -->
         @foreach($followed as $user)
       <li>
         @if($user->images)
-      <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン" style="width: 50px; height: 50px; border-radius: 50%;">
+      <a href="{{ route('follows.profile', ['id' => $user->id]) }}">
+      <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン" style="width: 50px; height: 50px; border-radius: 50%;"></a>
     @endif
         {{ $user->name }}
       </li>

@@ -12,18 +12,17 @@
         @foreach($followers as $user)
       <li>
         @if($user->images)
-      <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン" style="width: 50px; height: 50px; border-radius: 50%;">
+      <a href="{{ route('follows.profile', ['id' => $user->id]) }}">
+      <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン" style="width: 50px; height: 50px; border-radius: 50%;"></a>
     @endif
         {{ $user->name }}
       </li>
     @endforeach
       </div>
+
       <ul class="f-postArea">
         <!-- フォローしている人の投稿一覧 -->
         <div class="follow-post">
-
-
-
           <!-- ユーザーの投稿 -->
           @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
           <tr>

@@ -81,8 +81,9 @@ Route::get('/follow-list', 'FollowsController@followList')->name('follows.follow
 //login.blade.phpから来た処理をControllerのindexメソッドに繋げる
 Route::get('/follower-list', 'FollowsController@followerList')->name('follows.followerList');
 //フォロー、フォロワーの人のページ
-Route::get('/follow-list/{id}', 'UsersController@')->name('follows.profile');
-Route::get('/follower-list/{id}', 'UsersController@show')->name('follower.profile');
+Route::get('/follow-list/{id}', 'FollowsController@show')->name('follows.profile');
+
+Route::get('/follower-list/{id}', 'FollowsController@show')->name('follower.profile');
 
 //フォローボタン
 Route::post('/users/follow', 'UsersController@follow')->name('users.follow');

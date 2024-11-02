@@ -604,7 +604,8 @@ form span {
 
 /* フォロー、フォロワーリストページ */
 
-.f-postArea {
+.f-postArea,
+.profile-body {
     width: 100%;
     border-bottom: none;
 }

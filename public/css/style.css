@@ -443,10 +443,11 @@ form span {
     /* 小さい画面で改行されるようにする */
 }
 
-.followListIcon,
+.followListIcon li,
 .followerListIcon li {
     padding-bottom: 5px;
     height: 100%;
+    padding-right: 5px;
 }
 
 .main_area {

@@ -46,6 +46,8 @@
       <!-- フォロー・フォロー解除ボタン -->
       <form method="POST" action="{{ route('users.follow') }}">
       @csrf
+      <!-- フォローのidを渡している↓ -->
+      <input type="hidden" name="followed_id" value="{{ $user->id }}">
       <!--nameでコントローラーにfollowed_idを送ってる-->
       @if($user->isFollow())
       <button type="submit" style="background-color: #f00;" class="unfollow-btn">

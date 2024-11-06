@@ -21,7 +21,7 @@
 
   <!-- 自分と、フォローしてる人の投稿を表示 -->
   @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
-    <ul>
+    <ul class="postLine">
     <li class="post-block">
       <div class="post">
       <figure><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon"></figure>
@@ -30,7 +30,6 @@
         <div class="created_at">{{ $post->user->created_at }}</div>
         <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。-->
         <div>{{ $post->post }}</div>
-
       </div>
       @if ($user_id == $post->user_id)
       <!-- ↑これで自分の投稿のみ編集・削除できる -->

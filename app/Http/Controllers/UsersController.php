@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Post;
 
-use App\Models\Follow;
+use App\Follow;
 
 
 class UsersController extends Controller

@@ -28,7 +28,7 @@
             </a>
 
             <div class="side_user">
-                <p>{{ Auth::user()->username }}<span class="suffix">さん</p>
+                <p>{{ Auth::user()->username }}<span class="suffix">さん</span></p>
 
                 <!-- imagesフォルダ内のユーザーの画像を表示する -->
                 <!-- asset→グローバルヘルパー関数。publicディレクトリ内にあるファイルへのURLを生成する。アセット（画像、CSS、JavaScriptファイルなど）のURLを生成するために使われる。

@@ -40,7 +40,7 @@ a {
 }
 
 .post-name {
-    font-weight: bold;
+    font-weight: 590;
     /* ユーザー名を太字に */
     margin-bottom: 5px;
     /* 名前と投稿内容の間にスペースを追加 */
@@ -88,7 +88,7 @@ ul {
     width: 100%;
     height: 100px;
     /* フォーム全体を親要素いっぱいに広げる */
-    padding: 20px 50px 80px 50px;
+    padding: 30px 50px 80px 50px;
     position: relative;
     /* 投稿エリア下の枠線 */
     border-bottom: 7px solid #ccc;
@@ -152,7 +152,6 @@ ul {
     padding: 10px;
     width: 90%;
     position: relative;
-
 }
 
 .post {
@@ -178,6 +177,7 @@ ul {
     /* 列間のスペースを設定 */
 }
 
+/* 時間 */
 .created_at {
     margin-left: auto;
     /* 左側にスペースを持たせて右端に寄せる */
@@ -187,8 +187,8 @@ ul {
     /* 色を薄くする（任意） */
 }
 
-/* ボタンエリア */
-ul {
+/* 投稿エリアと、フォローフォロワーリストの投稿 */
+.postLine {
     position: relative;
     /* 各投稿ごとに下線 */
     border-bottom: 1px solid #999;
@@ -435,18 +435,42 @@ form span {
 }
 
 /* ここがフォローリスト画面の上や検索フォーム */
+
+.followListIcon,
+.followerListIcon {
+    display: flex;
+    flex-wrap: wrap;
+    /* 小さい画面で改行されるようにする */
+}
+
+.followListIcon,
+.followerListIcon li {
+    padding-bottom: 5px;
+    height: 100%;
+}
+
 .main_area {
     /* 要素を横並び */
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     /* アイテムの高さを揃える */
     width: 100%;
     height: 100px;
     /* フォーム全体を親要素いっぱいに広げる */
-    padding: 20px 50px 80px 20px;
+    padding: 30px 50px 80px 20px;
     position: relative;
     /* 投稿エリア下の枠線 */
     border-bottom: 7px solid #ccc;
+    overflow: hidden;
+    /* 子要素がはみ出ないようにする */
+}
+
+/* フォローリストなどのタイトル文 */
+.main_area h1 {
+    white-space: nowrap;
+    /* h1タグを改行させない */
+    margin-right: 10px;
+    margin-top: 15px;
 }
 
 
@@ -610,27 +634,92 @@ form span {
     border-bottom: none;
 }
 
-.follow-post {
-    /* width: 100%; */
+.f-postArea {
+    display: flex;
+    flex-flow: column;
+    /* 縦並び */
+}
+
+.iconName {
+    display: flex;
+}
+
+.user-bio {
+    display: flex;
 }
 
 /* プロフィールページ */
 .profile-area {
-
+    display: flex;
+    /* flex-direction: column; */
+    padding: 5% 10%;
     width: 100%;
-    height: 100px;
-    /* フォーム全体を親要素いっぱいに広げる */
-    padding: 20px 50px 80px 20px;
-    position: relative;
-    /* 投稿エリア下の枠線 */
-    border-bottom: 7px solid #ccc;
+    overflow: hidden;
+    /* 子要素がはみ出ないようにする */
 }
 
-.profile-area form {
+.formArea {
+    padding-top: 3%;
+    width: 100%;
+}
+
+.formIconName {
     display: flex;
-    /* フレックスボックスを有効にする */
-    flex-direction: column;
-    /* 子要素を縦に並べる */
+    width: 100%;
+}
+
+.profile-image {
+    width: 50px;
+    /* 幅を指定（必要に応じて調整） */
+    height: 50px;
+    padding-right: 4%;
+}
+
+.form-control {
+    margin-left: 20px;
+}
+
+.form-group {
+    display: flex;
     align-items: center;
-    /* 水平方向に中央揃え（必要に応じて） */
+    padding-bottom: 30px;
+}
+
+.form-group label {
+    margin-right: 30px;
+    width: 200px;
+}
+
+/* アイコン画像選択ボタン */
+.form-image {
+    display: block;
+    /* ブロック要素として表示 */
+    width: 50%;
+    /* 幅を100%に設定 */
+    padding: 10px;
+    /* 内側の余白を設定 */
+    border: 1px solid #ced4da;
+    /* ボーダーを設定 */
+    border-radius: 4px;
+    /* 角を丸める設定（四角い形状にするために0でも可） */
+    box-shadow: none;
+    /* シャドウを削除 */
+    margin-top: 5px;
+    /* 上部に余白を追加 */
+}
+
+
+
+/* 更新ボタン */
+.btn-primary {
+    display: block;
+    /* ブロック要素にして幅を調整 */
+    background-color: #f33;
+    width: 100px;
+    padding: 5px 30px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin: auto;
 }

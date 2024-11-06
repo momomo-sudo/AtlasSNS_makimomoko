@@ -2,26 +2,26 @@
 
 @section('content')
 <div id="container">
-  <ul>
-    <div class="profile-area">
 
-      <!-- <form action="{{ route('post.store') }}" method="POST"> 名前付きルート post.store に対応するURLを生成します -->
+  <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="profile-area">
       @if(session('success'))
-      <div class="alert alert-success">
+      <!-- <div class="alert alert-success">
       {{ session('success') }}
-      </div>
+      </div> -->
     @endif
 
-      <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        <img src="{{ asset('storage/images/' . Auth::user()->images) }}">
-        <div class="form-group">
-          <label for="username">名前</label>
-          <input type="text" id="username" name="username" class="form-control" value="{{ old('username', $user->username) }}" required>
-          @error('username')
+      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class="profile-image">
+      <div class="formArea">
+        <div class="formIconName">
+          <div class="form-group">
+            <label for="username">ユーザー名</label>
+            <input type="text" id="username" name="username" class="form-control" value="{{ old('username', $user->username) }}" required>
+            @error('username')
         <div class="text-danger">{{ $message }}</div>
-
       @enderror
+          </div>
         </div>
 
         <div class="form-group">
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-          <label for="images">プロフィール画像</label>
+          <label for="images">アイコン画像</label>
           <input type="file" id="images" name="images" class="form-control">
           @if($user->images)
       @endif
@@ -65,12 +65,9 @@
         <div class="text-danger">{{ $message }}</div>
       @enderror
         </div>
-
         <button type="submit" class="btn btn-primary">更新</button>
-      </form>
-
-
+      </div>
     </div>
-  </ul>
+  </form>
 </div>
 @endsection

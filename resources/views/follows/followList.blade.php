@@ -14,7 +14,7 @@
         <li>
         @if($user->images)
       <a href="{{ route('follows.profile', ['id' => $user->id]) }}">
-        <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン" style="width: 50px; height: 50px; border-radius: 50%;"></a>
+        <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン"></a>
     @endif
         {{ $user->name }}
         </li>

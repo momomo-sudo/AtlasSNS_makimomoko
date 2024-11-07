@@ -27,8 +27,7 @@
 
     <!-- 検索結果の表示-->
     <ul class="searchArea">
-
-      <table class="table" style="border-collapse: separate">
+      <table class="table">
 
         @foreach($users as $user) <!-- assetの$user -->
       @if ($user->id !== Auth::user()->id)<!-- この部分でテーブルに登録されているユーザーとログインしているユーザーが不一致のユーザー(要するに自分以外)の表示 -->
@@ -50,18 +49,16 @@
       <input type="hidden" name="followed_id" value="{{ $user->id }}">
       <!--nameでコントローラーにfollowed_idを送ってる-->
       @if($user->isFollow())
-      <button type="submit" style="background-color: #f00;" class="unfollow-btn">
+      <button type="submit" class="unfollow-btn">
       フォロー解除
       </button>
     @else
-      <button type="submit" style="background-color: #6cf;" class="follow-btn">
+      <button type="submit" class="follow-btn">
       フォローする
       </button>
     @endif
       </form>
-
   @endif
-
       </li>
     @endforeach
       </table>

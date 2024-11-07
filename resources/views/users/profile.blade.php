@@ -6,12 +6,6 @@
   <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="profile-area">
-      @if(session('success'))
-      <!-- <div class="alert alert-success">
-      {{ session('success') }}
-      </div> -->
-    @endif
-
       <img src="{{ asset('storage/images/' . Auth::user()->images) }}" class="profile-image">
       <div class="formArea">
         <div class="formIconName">

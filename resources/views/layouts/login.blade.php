@@ -35,7 +35,7 @@
                          /images/icon1.png→publicディレクトリ内のimagesフォルダにあるicon1.pngという画像ファイルのパス-->
 
                 <!-- アコーディオンメニュー -->
-                <div class="menu-box">
+                <nav class="menu-box">
                     <button type="button" id="menu_btn" class="menu_btn"></button>
                     <ul class="menu"><!-- 今回消したり表示したいのはここ-->
                         <li><a class="home" href="{{ URL::to('/top') }}">ホーム</a></li>
@@ -45,7 +45,7 @@
                         <li><a class="center" href="{{ URL::to('/logout') }}">ログアウト</a></li>
                         <!-- ここからスタートしてweb.phpに繋げている -->
                     </ul>
-                </div>
+                </nav>
                 <!-- アイコン -->
                 <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
             </div>

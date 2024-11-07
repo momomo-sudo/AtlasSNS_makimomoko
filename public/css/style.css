@@ -18,7 +18,10 @@ a {
 
 }
 
-
+/* 検索ページのtableクラス */
+.table {
+    border-collapse: separate;
+}
 
 .atlas {
     padding: 10px;
@@ -107,6 +110,11 @@ ul {
 }
 
 /* 投稿ボタン */
+.post-btn {
+    width: 40px;
+    height: 40px;
+}
+
 .button {
     position: absolute;
     top: 100px;
@@ -158,6 +166,11 @@ ul {
     /* アイコンと投稿を横並び */
     display: flex;
     width: 100%;
+}
+
+.post img {
+    width: 50px;
+    height: 50px;
 }
 
 .post-content {
@@ -450,6 +463,14 @@ form span {
     padding-right: 5px;
 }
 
+.followListIcon li img,
+.followerListIcon li img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
 .main_area {
     /* 要素を横並び */
     display: flex;
@@ -524,6 +545,7 @@ form span {
 
 
 .searchArea button {
+    /* ポインターを変える */
     cursor: pointer;
 }
 
@@ -559,6 +581,13 @@ form span {
     color: #fff;
 }
 
+.follow-btn {
+    background-color: #6cf;
+}
+
+.unfollow-btn {
+    background-color: #f00;
+}
 
 /* 編集機能 */
 
@@ -627,27 +656,7 @@ form span {
 }
 
 
-/* フォロー、フォロワーリストページ */
 
-.f-postArea,
-.profile-body {
-    width: 100%;
-    border-bottom: none;
-}
-
-.f-postArea {
-    display: flex;
-    flex-flow: column;
-    /* 縦並び */
-}
-
-.iconName {
-    display: flex;
-}
-
-.user-bio {
-    display: flex;
-}
 
 /* プロフィールページ */
 .profile-area {
@@ -723,4 +732,95 @@ form span {
     font-size: 15px;
     border: none;
     margin: auto;
+}
+
+/* フォロー、フォロワーリストページ */
+
+.f-postArea,
+.profile-body {
+    width: 100%;
+    border-bottom: none;
+}
+
+.f-postArea {
+    display: flex;
+    flex-flow: column;
+    /* 縦並び */
+}
+
+/* ユーザーのプロフィールページ*/
+.user-bio {
+    display: flex;
+}
+
+.Userpost_form {
+    /* 要素を横並び */
+    display: flex;
+    justify-content: space-between;
+    /* 各アイテムを両端に配置 */
+    align-items: center;
+    /* アイテムの高さを揃える */
+    width: 100%;
+    height: 100px;
+    /* フォーム全体を親要素いっぱいに広げる */
+    padding: 30px 50px 80px 50px;
+    position: relative;
+    /* 投稿エリア下の枠線 */
+    border-bottom: 7px solid #ccc;
+    white-space: nowrap;
+}
+
+.Userpost_form2 {
+    display: flex;
+    padding-top: 5%;
+    padding-left: 10%;
+}
+
+.Userpost_form2 img {
+    width: 50px;
+    height: 50px;
+}
+
+.userProfileBtn {
+    white-space: nowrap;
+    padding-top: 30%;
+    padding-right: 20%;
+    padding-bottom: 10%;
+}
+
+.userProfileBtn button {
+    position: absolute;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.userFollow-btn {
+    background-color: #f00;
+}
+
+.userUnfollow-btn {
+    background-color: #6cf;
+}
+
+.Userpost_form img {
+    padding-right: 20px;
+}
+
+.user-name,
+.user-bio {
+    display: flex;
+    padding-bottom: 20%;
+    width: 100%;
+}
+
+.UserpageUsername,
+.UserpageBio {
+    padding-right: 40%;
+}
+
+.UserpageBio {
+    margin-right: 15px;
 }

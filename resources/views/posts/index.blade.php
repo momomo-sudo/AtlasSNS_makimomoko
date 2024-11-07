@@ -12,9 +12,7 @@
     <div class="post_form">
       <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
-
-      <button type="submit" class="button"> <img class="post-btn" src="images/post.png" style="width: 40px; height: 40px;"></button>
-
+      <button type="submit" class="button"> <img class="post-btn" src="images/post.png"></button>
     </div>
   </form>
 

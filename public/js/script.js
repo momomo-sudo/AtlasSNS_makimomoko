@@ -31,6 +31,7 @@ jQuery(function ($) {
 $(function () {
   // 編集ボタン(class="js-modal-open")が押されたら発火
   $('.js-modal-open').on('click', function () {
+
     // モーダルの中身(class="js-modal")の表示
     $('.js-modal').fadeIn();
     // 押されたボタンから投稿内容を取得し変数へ格納

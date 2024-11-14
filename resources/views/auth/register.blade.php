@@ -4,7 +4,7 @@
 
 <h2 class="login_title">新規ユーザー登録</h2>
 
-{!! Form::open(['url' => '/register']) !!}
+{!! Form::open(['url' => '/register', 'class' => 'form_area']) !!}
 {{ Form::label('ユーザー名') }}
 {{ Form::text('username', null, ['class' => 'input']) }}
 

@@ -102,6 +102,15 @@ a {
     padding: 10px;
 }
 
+.form_area label {
+    text-align: left;
+}
+
+/* アラートの余白 */
+.alert-danger {
+    padding: 5% 0%;
+}
+
 /* 新規登録後の画面 */
 #clear {
     line-height: 1.4;

@@ -43,6 +43,8 @@ class PostsController extends Controller
         //バリデーション
         $request->validate([
             'content' => 'required|max:150',
+        ], [
+            'content.required' => '投稿内容は必ず指定してください。',
         ]);
 
         $user_id = Auth::user()->id;  //Auth::userだと、ログインしている人の情報を全部出してくれ
@@ -62,15 +64,16 @@ class PostsController extends Controller
     /** 編集画面の表示*/
     public function update(Request $request, $id)
     {
-        // IDから該当する投稿を取得
-        $post = Post::find($id);
 
         // バリデーション
         $request->validate([
             'post' => 'required|string|max:150',
+        ], [
+            'post.max' => '編集内容は必ず150文字以下にしてください。',
         ]);
 
-
+        // IDから該当する投稿を取得
+        $post = Post::find($id);
 
         // 投稿内容を更新
         $post->post = $request->input('post');

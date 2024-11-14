@@ -612,15 +612,20 @@ form span {
 }
 
 .modal__content {
-    background-color: #186AC9;
+    background-color: #fff;
     left: 50%;
     padding: 40px;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
+    border-radius: 10px;
 }
 
+.modal_post {
+    width: 100%;
+    height: 200px;
+}
 
 
 /* 編集ボタン */
@@ -636,6 +641,14 @@ form span {
     background-position: center;
     border: none;
     cursor: pointer;
+}
+
+.modal-btn {
+    margin-top: 10px;
+    /* フォームとボタンの間にスペースを追加 */
+    margin-left: 45%;
+    background-color: transparent;
+    ;
 }
 
 /* 削除ボタン */
@@ -687,12 +700,15 @@ form span {
 
 .form-control {
     margin-left: 20px;
+    width: 200px;
+    height: 30px;
 }
 
 .form-group {
     display: flex;
     align-items: center;
     padding-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .form-group label {
@@ -718,7 +734,11 @@ form span {
     /* 上部に余白を追加 */
 }
 
-
+/* バリデーションメッセージ */
+.text-danger {
+    position: absolute;
+    padding-top: 6%;
+}
 
 /* 更新ボタン */
 .btn-primary {
@@ -823,4 +843,17 @@ form span {
 
 .UserpageBio {
     margin-right: 15px;
+}
+
+/* 投稿機能のバリデーションメッセージ */
+.content-alert {
+    position: absolute;
+    padding-left: 20%;
+    padding-bottom: 10%;
+}
+
+.post-alert {
+    position: absolute;
+    padding-left: 30%;
+    padding-top: 0.5%;
 }

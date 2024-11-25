@@ -47,11 +47,11 @@
                     </ul>
                 </nav>
                 <!-- アイコン -->
-                @if(Auth::user()->images)
-                    <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
-                @else
+                @if(Auth::user()->images === null)
                     <!-- 初期画像として icon1.png を表示 -->
                     <img src="{{ asset('images/icon1.png') }}" width="50" height="50">
+                @else
+                    <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
                 @endif
             </div>
         </div>

@@ -4,10 +4,13 @@
 
 <h2 class="login_title">新規ユーザー登録</h2>
 
-{!! Form::open(['url' => '/register', 'class' => 'form_area']) !!}
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username', null, ['class' => 'input']) }}
-
+<div class="form">
+  {!! Form::open(['url' => '/register', 'class' => 'form_area']) !!}
+  {{ Form::label('ユーザー名') }}
+  <div>
+    {{ Form::text('username', null, ['class' => 'input']) }}
+  </div>
+</div>
 @if ($errors->has('username'))
   <div class="alert alert-danger">
     <ul>
@@ -18,9 +21,12 @@
   </div>
 @endif
 
-{{ Form::label('メールアドレス') }}
-{{ Form::text('mail', null, ['class' => 'input']) }}
-
+<div class="form">
+  {{ Form::label('メールアドレス') }}
+  <div>
+    {{ Form::text('mail', null, ['class' => 'input']) }}
+  </div>
+</div>
 @if ($errors->has('mail'))
   <div class="alert alert-danger">
     <ul>
@@ -31,9 +37,12 @@
   </div>
 @endif
 
-{{ Form::label('パスワード') }}
-{{ Form::password('password', ['class' => 'input']) }}
-
+<div class="form">
+  {{ Form::label('パスワード') }}
+  <div>
+    {{ Form::password('password', ['class' => 'input']) }}
+  </div>
+</div>
 @if ($errors->has('password'))
   <div class="alert alert-danger">
     <ul>
@@ -43,10 +52,12 @@
     </ul>
   </div>
 @endif
-
-{{ Form::label('パスワード確認') }}
-{{ Form::password('password_confirmation', ['class' => 'input']) }}
-
+<div class="form">
+  {{ Form::label('パスワード確認') }}
+  <div>
+    {{ Form::password('password_confirmation', ['class' => 'input']) }}
+  </div>
+</div>
 @if ($errors->has('password_confirmation'))
   <div class="alert alert-danger">
     <ul>

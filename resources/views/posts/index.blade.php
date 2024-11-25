@@ -21,11 +21,11 @@
       </ul>
       </div>
     @endif
-      @if(Auth::user()->images)
-      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
-    @else
+      @if(Auth::user()->images === null)
       <!-- 初期画像として icon1.png を表示 -->
       <img src="{{ asset('images/icon1.png') }}" width="50" height="50">
+    @else
+      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
     @endif
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
       <button type="submit" class="button"> <img class="post-btn" src="images/post.png"></button>
@@ -78,9 +78,10 @@
         {{ csrf_field() }}
         <textarea name="post" class="modal_post"></textarea>
         <input type="hidden" name="id" class="modal_id" value="{{ $post->id }}">
+
+        <input type="submit" class="modal-btn" value="">
+        <!-- valueを無しにすることで「送信」の文字が消える　 -->
       </form>
-      <input type="submit" class="modal-btn" value="">
-      <!-- valueを無しにすることで「送信」の文字が消える　 -->
       </div>
       </div>
 

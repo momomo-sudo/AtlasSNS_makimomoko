@@ -55,10 +55,10 @@ label {
 }
 
 .input {
-    margin-top: 7px;
-    margin-bottom: 20px;
+    /* margin-top: 7px;
+    margin-bottom: 20px; */
     width: 100%;
-    padding: 10px 10px;
+    /* padding: 10px 10px; */
     border-radius: 10px;
     border: none;
     outline: none;
@@ -98,12 +98,20 @@ a {
     color: #fff;
 }
 
-.form_area {
-    padding: 10px;
+/* 登録フォーム */
+
+.form {
+    text-align: left;
+    padding-bottom: 10%;
+    height: 20%;
 }
 
-.form_area label {
-    text-align: left;
+.form_input {
+    width: 100%;
+}
+
+.form_input input {
+    height: 30px;
 }
 
 /* アラートの余白 */

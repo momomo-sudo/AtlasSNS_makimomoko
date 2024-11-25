@@ -13,7 +13,7 @@
 </div>
 <div class="form">
   {{ Form::label('パスワード') }}
-  <div>
+  <div class="form_input">
     {{ Form::password('password', ['class' => 'input']) }}
   </div>
 </div>

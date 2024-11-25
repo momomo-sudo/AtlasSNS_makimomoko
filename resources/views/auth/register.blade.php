@@ -7,7 +7,7 @@
 <div class="form">
   {!! Form::open(['url' => '/register', 'class' => 'form_area']) !!}
   {{ Form::label('ユーザー名') }}
-  <div>
+  <div class="form_input">
     {{ Form::text('username', null, ['class' => 'input']) }}
   </div>
 </div>
@@ -23,7 +23,7 @@
 
 <div class="form">
   {{ Form::label('メールアドレス') }}
-  <div>
+  <div class="form_input">
     {{ Form::text('mail', null, ['class' => 'input']) }}
   </div>
 </div>
@@ -39,7 +39,7 @@
 
 <div class="form">
   {{ Form::label('パスワード') }}
-  <div>
+  <div class="form_input">
     {{ Form::password('password', ['class' => 'input']) }}
   </div>
 </div>
@@ -54,7 +54,7 @@
 @endif
 <div class="form">
   {{ Form::label('パスワード確認') }}
-  <div>
+  <div class="form_input">
     {{ Form::password('password_confirmation', ['class' => 'input']) }}
   </div>
 </div>

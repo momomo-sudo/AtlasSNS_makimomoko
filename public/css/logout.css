@@ -108,15 +108,11 @@ a {
 
 .form_input {
     width: 100%;
+    padding-bottom: 5%
 }
 
 .form_input input {
     height: 30px;
-}
-
-/* アラートの余白 */
-.alert-danger {
-    padding: 5% 0%;
 }
 
 /* 新規登録後の画面 */

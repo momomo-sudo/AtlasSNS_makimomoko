@@ -9,8 +9,6 @@
   {{ Form::label('ユーザー名') }}
   <div class="form_input">
     {{ Form::text('username', null, ['class' => 'input']) }}
-  </div>
-</div>
 @if ($errors->has('username'))
   <div class="alert alert-danger">
     <ul>
@@ -20,53 +18,60 @@
     </ul>
   </div>
 @endif
+  </div>
+</div>
+
 
 <div class="form">
   {{ Form::label('メールアドレス') }}
   <div class="form_input">
     {{ Form::text('mail', null, ['class' => 'input']) }}
+    @if ($errors->has('mail'))
+    <div class="alert alert-danger">
+      <ul>
+      @foreach($errors->get('mail') as $message)
+      <li>{{ $message }}</li>
+    @endforeach
+      </ul>
+    </div>
+  @endif
   </div>
 </div>
-@if ($errors->has('mail'))
-  <div class="alert alert-danger">
-    <ul>
-    @foreach($errors->get('mail') as $message)
-    <li>{{ $message }}</li>
-  @endforeach
-    </ul>
-  </div>
-@endif
+
 
 <div class="form">
   {{ Form::label('パスワード') }}
   <div class="form_input">
     {{ Form::password('password', ['class' => 'input']) }}
+    @if ($errors->has('password'))
+    <div class="alert alert-danger">
+      <ul>
+      @foreach($errors->get('password') as $message)
+      <li>{{ $message }}</li>
+    @endforeach
+      </ul>
+    </div>
+  @endif
   </div>
 </div>
-@if ($errors->has('password'))
-  <div class="alert alert-danger">
-    <ul>
-    @foreach($errors->get('password') as $message)
-    <li>{{ $message }}</li>
-  @endforeach
-    </ul>
-  </div>
-@endif
+
+
 <div class="form">
   {{ Form::label('パスワード確認') }}
   <div class="form_input">
     {{ Form::password('password_confirmation', ['class' => 'input']) }}
+    @if ($errors->has('password_confirmation'))
+    <div class="alert alert-danger">
+      <ul>
+      @foreach($errors->get('password_confirmation') as $message)
+      <li>{{ $message }}</li>
+    @endforeach
+      </ul>
+    </div>
+  @endif
   </div>
 </div>
-@if ($errors->has('password_confirmation'))
-  <div class="alert alert-danger">
-    <ul>
-    @foreach($errors->get('password_confirmation') as $message)
-    <li>{{ $message }}</li>
-  @endforeach
-    </ul>
-  </div>
-@endif
+
 
 {{ Form::submit('新規登録', ['class' => 'btn-block']) }}
 {!! Form::close() !!}

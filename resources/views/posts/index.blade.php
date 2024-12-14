@@ -49,49 +49,56 @@
   @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
     <ul class="postLine">
     <li class="post-block">
-      <div class="post">
-      <figure><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon"></figure>
-      <div class="post-content">
-        <div class="post-name">{{ $post->user->username }}</div>
-        <div class="created_at">{{ $post->user->created_at }}</div>
-        <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。-->
-        <div>{{ $post->post }}</div>
-      </div>
+    <div class="post">
+    <figure>
+    @if($post->user->images === null)
+    <!-- 初期画像として icon1.png を表示 -->
+    <img src="{{ asset('images/icon1.png') }}" width="50" height="50">
+    @else
+    <img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon">
+    @endif
+</figure>
+    <div class="post-content">
+    <div class="post-name">{{ $post->user->username }}</div>
+    <div class="created_at">{{ $post->user->created_at }}</div>
+    <!-- $postはPostcontrollerで定義している。userがPostモデルに定義したメソッド。-->
+    <div>{{ $post->post }}</div>
+    </div>
 
-      @if ($user_id == $post->user_id)
-      <!-- ↑これで自分の投稿のみ編集・削除できる -->
-      </div>
+    @if ($user_id == $post->user_id)
+    <!-- ↑これで自分の投稿のみ編集・削除できる -->
+    </div>
 
-      <!-- モーダルの実装（編集機能） -->
-      <div class="button_area">
-      <div class="content">
-      <!-- 投稿の編集ボタン -->
-      <a class="js-modal-open" href="#" post="{{ $post->post }}" post_id="{{ $post->id }}"></a>
-      </div>
+    <!-- モーダルの実装（編集機能） -->
+    <div class="button_area">
+    <div class="content">
+    <!-- 投稿の編集ボタン -->
+    <a class="js-modal-open" href="#" post="{{ $post->post }}" post_id="{{ $post->id }}"></a>
+    </div>
 
-      <!-- モーダルの中身 -->
-      <div class="modal js-modal">
-      <div class="modal__bg js-modal-close"></div>
-      <div class="modal__content">
-      <form action="" method="POST">
-        @method('PATCH')
-        {{ csrf_field() }}
-        <textarea name="post" class="modal_post"></textarea>
-        <input type="hidden" name="id" class="modal_id" value="{{ $post->id }}">
+    <!-- モーダルの中身 -->
+    <div class="modal js-modal">
+    <div class="modal__bg js-modal-close"></div>
+    <div class="modal__content">
+    <form action="" method="POST">
+    @method('PATCH')
+    {{ csrf_field() }}
+    <textarea name="post" class="modal_post"></textarea>
+    <input type="hidden" name="id" class="modal_id" value="{{ $post->id }}">
 
-        <input type="submit" class="modal-btn" value="">
-        <!-- valueを無しにすることで「送信」の文字が消える　 -->
-      </form>
-      </div>
-      </div>
+    <input type="submit" class="modal-btn" value="">
+    <!-- valueを無しにすることで「送信」の文字が消える　 -->
+    </form>
+    </div>
+    </div>
 
-      <!-- 削除機能 -->
-      <form action="{{ route('post.delete', $post->id) }}" method="POST" onsubmit="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
-      @csrf
-      @method('GET')
-      <button class="btn_delete"></button>
-      </form>
-      </div>
+    <!-- 削除機能 -->
+    <form action="{{ route('post.delete', $post->id) }}" method="POST" onsubmit="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">
+    @csrf
+    @method('GET')
+    <button class="btn_delete"></button>
+    </form>
+    </div>
     @endif
     </li>
     </ul>

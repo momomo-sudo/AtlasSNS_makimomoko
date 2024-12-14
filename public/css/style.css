@@ -691,10 +691,10 @@ form span {
     width: 100%;
 }
 
-.formIconName {
+/* .formIconName {
     display: flex;
-    width: 100%;
-}
+    /* width: 100%;
+}*/
 
 .profile-image {
     width: 50px;
@@ -710,15 +710,21 @@ form span {
 }
 
 .form-group {
-    display: flex;
+    display: inline-block;
     align-items: center;
     padding-bottom: 30px;
     margin-bottom: 5px;
 }
 
 .form-group label {
+    display: inline-block;
+        /* 入力フィールドもインラインブロックに */
     margin-right: 30px;
     width: 200px;
+}
+.form-group input {
+    display: inline-block;
+        /* 入力フィールドもインラインブロックに */
 }
 
 /* アイコン画像選択ボタン */
@@ -741,8 +747,8 @@ form span {
 
 /* バリデーションメッセージ */
 .text-danger {
-    position: absolute;
-    padding-top: 6%;
+    /* position: absolute; */
+    /* padding-top: 6%; */
 }
 
 /* 更新ボタン */

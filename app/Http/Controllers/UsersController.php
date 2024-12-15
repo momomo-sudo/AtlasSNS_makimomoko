@@ -34,7 +34,7 @@ class UsersController extends Controller
             'password' => 'required|alpha-num|max:20|min:8', //8文字以上、英数字等
             'password_confirmation' => 'required|alpha-num|max:20|min:8|same:password',
             'bio' => 'nullable|max:150',
-            'images' => 'nullable|image|mimes:jpg,png,bmp,gif,svg', // 画像ファイルのバリデーション
+            'images' => 'image|mimes:jpg,png,bmp,gif,svg', // 画像ファイルのバリデーション
         ]);
 
         $user = Auth::user();

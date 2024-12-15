@@ -11,8 +11,9 @@
           @foreach($followers as $user)
         <li>
         @if($user->images)
-      <a href="{{ route('follows.profile', ['id' => $user->id]) }}">
-        <img src="{{ asset('storage/images/' . $user->images) }}" alt="{{ $user->name }}のアイコン"></a>
+        <a href="{{ route('follows.profile', ['id' => $user->id]) }}">
+        <!-- 初期画像として icon1.png を表示 -->
+        <img src="{{ $user->images && $user->images !== 'icon1.png' ? asset('storage/images/' . $user->images) : asset('images/icon1.png') }}"></a>
     @endif
         {{ $user->name }}
         </li>
@@ -24,10 +25,11 @@
         <!-- フォローしている人の投稿一覧 -->
         <!-- ユーザーの投稿 -->
         @foreach ($posts as $post) <!-- 各投稿($post)に対して行いたい処理を書く -->
-      <ul class="postLine">
+        <ul class="postLine">
         <li class="post-block">
         <div class="post">
-          <a href="{{ route('follows.profile', ['id' => $post->user->id]) }}"><img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon">
+          <a href="{{ route('follows.profile', ['id' => $post->user->id]) }}">
+          <img src="{{ $post->user->images && $post->user->images !== 'icon1.png' ? asset('storage/images/' . $post->user->images) : asset('images/icon1.png') }}" class="user-icon">
           </a>
           <div class="post-content">
           <div class="post-name">{{ $post->user->username }}</div>
@@ -37,7 +39,7 @@
           </div>
         </div>
         </li>
-      </ul>
+        </ul>
     @endforeach
 
       </ul>

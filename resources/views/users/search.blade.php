@@ -31,39 +31,34 @@
 
         @foreach($users as $user) <!-- assetの$user -->
           @if ($user->id !== Auth::user()->id)<!-- この部分でテーブルに登録されているユーザーとログインしているユーザーが不一致のユーザー(要するに自分以外)の表示 -->
-        <!-- table rowの略で表の行部分（横方向）を指定するタグ-->
+      <!-- table rowの略で表の行部分（横方向）を指定するタグ-->
 
-        <li class="searchList">
-        <!-- 検索したら、usernameと、imagesを表示する -->
-        <div class="icon-name">
-        @if($user->images === null)
-      <!-- 初期画像として icon1.png を表示 -->
-      <img src="{{ asset('images/icon1.png') }}" width="40" height="40">{{$user->username}}
-    @else
-        <img src="{{ asset('storage/images/' . $user->images) }}" width="40" height="40" class="username">{{$user->username}}
-        @endif
-
-        <!-- $userのimagesカラム（カラム名） -->
-        <!-- asset→publicディレクトリ内のファイルのURLを生成するための関数-->
-        <!-- td→table dataの略。セルの内容がデータの場合は、この<td>要素を使用する。-->
-        <!-- thは一番上の行や見出し、tdは２行目以降(データ)の内容 -->
-        </div>
-        <!-- フォロー・フォロー解除ボタン -->
-        <form method="POST" action="{{ route('users.follow') }}">
-        @csrf
-        <!-- フォローのidを渡している↓ -->
-        <input type="hidden" name="followed_id" value="{{ $user->id }}">
-        <!--nameでコントローラーにfollowed_idを送ってる-->
-        @if($user->isFollow())
-        <button type="submit" class="unfollow-btn">
-        フォロー解除
-        </button>
-        @else
-        <button type="submit" class="follow-btn">
-        フォローする
-        </button>
-        @endif
-        </form>
+      <li class="searchList">
+      <!-- 検索したら、usernameと、imagesを表示する -->
+      <div class="icon-name">
+        <!-- 初期画像として icon1.png を表示 -->
+        <img src="{{ $user->images && $user->images !== 'icon1.png' ? asset('storage/images/' . $user->images) : asset('images/icon1.png') }}" width="40" height="40" class="username">{{$user->username}}
+      <!-- $userのimagesカラム（カラム名） -->
+      <!-- asset→publicディレクトリ内のファイルのURLを生成するための関数-->
+      <!-- td→table dataの略。セルの内容がデータの場合は、この<td>要素を使用する。-->
+      <!-- thは一番上の行や見出し、tdは２行目以降(データ)の内容 -->
+      </div>
+      <!-- フォロー・フォロー解除ボタン -->
+      <form method="POST" action="{{ route('users.follow') }}">
+      @csrf
+      <!-- フォローのidを渡している↓ -->
+      <input type="hidden" name="followed_id" value="{{ $user->id }}">
+      <!--nameでコントローラーにfollowed_idを送ってる-->
+      @if($user->isFollow())
+      <button type="submit" class="unfollow-btn">
+      フォロー解除
+      </button>
+      @else
+      <button type="submit" class="follow-btn">
+      フォローする
+      </button>
+      @endif
+      </form>
     @endif
           </li>
     @endforeach

@@ -21,12 +21,9 @@
       </ul>
       </div>
     @endif
-      @if(Auth::user()->images === null)
-      <!-- 初期画像として icon1.png を表示 -->
-      <img src="{{ asset('images/icon1.png') }}" width="50" height="50">
-    @else
-      <img src="{{ asset('storage/images/' . Auth::user()->images) }}" width="50" height="50">
-    @endif
+    <!-- 初期画像として icon1.png を表示 -->
+    <img src="{{ $user->images && $user->images !== 'icon1.png' ? asset('storage/images/' . $user->images) : asset('images/icon1.png') }}" width="50" height="50">
+
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
       <button type="submit" class="button"> <img class="post-btn" src="images/post.png"></button>
     </div>
@@ -51,13 +48,9 @@
     <li class="post-block">
     <div class="post">
     <figure>
-    @if($post->user->images === null)
     <!-- 初期画像として icon1.png を表示 -->
-    <img src="{{ asset('images/icon1.png') }}" width="50" height="50">
-    @else
-    <img src="{{ asset('storage/images/' . $post->user->images) }}" alt="ユーザーアイコン" class="user-icon">
-    @endif
-</figure>
+    <img src="{{ $post->user->images && $post->user->images !== 'icon1.png' ? asset('storage/images/' . $post->user->images) : asset('images/icon1.png') }}" width="50" height="50" class="user-icon">
+    </figure>
     <div class="post-content">
     <div class="post-name">{{ $post->user->username }}</div>
     <div class="created_at">{{ $post->user->created_at }}</div>

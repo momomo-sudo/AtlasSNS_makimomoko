@@ -152,6 +152,7 @@ return [
     'mail' => 'メールアドレス',
     'password' => 'パスワード',
     'password_confirmation' => 'パスワード確認',
+    'content' => '投稿内容',
   ],
 
 ];

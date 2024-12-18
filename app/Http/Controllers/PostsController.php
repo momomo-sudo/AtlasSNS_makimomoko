@@ -44,7 +44,7 @@ class PostsController extends Controller
         $request->validate([
             'content' => 'required|max:150',
         ], [
-            'content.required' => '投稿内容は必ず指定してください。',
+            // 'content.required' => '投稿内容は必ず指定してください。',
         ]);
 
         $user_id = Auth::user()->id;  //Auth::userだと、ログインしている人の情報を全部出してくれ

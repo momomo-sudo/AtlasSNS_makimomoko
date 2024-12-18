@@ -34,7 +34,6 @@
           @error('password')
         <div class="text-danger">{{ $message }}</div>
       @enderror
-
         </div>
 
         <div class="form-group">

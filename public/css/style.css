@@ -691,10 +691,6 @@ form span {
     width: 100%;
 }
 
-/* .formIconName {
-    display: flex;
-    /* width: 100%;
-}*/
 
 .profile-image {
     width: 50px;
@@ -743,12 +739,6 @@ form span {
     /* シャドウを削除 */
     margin-top: 5px;
     /* 上部に余白を追加 */
-}
-
-/* バリデーションメッセージ */
-.text-danger {
-    /* position: absolute; */
-    /* padding-top: 6%; */
 }
 
 /* 更新ボタン */

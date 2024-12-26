@@ -849,6 +849,8 @@ form span {
 /* 投稿機能のバリデーションメッセージ */
 .content-alert {
     position: absolute;
+    top: 50%;
+    /* /* post_form内の上から何%か */
     padding-left: 10%;
 }
 

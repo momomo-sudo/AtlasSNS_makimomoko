@@ -10,25 +10,22 @@
     @csrf
 
     <div class="post_form">
-
       <!-- バリデーションメッセージ -->
       <!-- 初期画像として icon1.png を表示 -->
       <img src="{{ $user->images && $user->images !== 'icon1.png' ? asset('storage/images/' . $user->images) : asset('images/icon1.png') }}" width="50" height="50">
 
       <input type="text" name="content" placeholder="投稿内容を入力してください。">
       <button type="submit" class="button"> <img class="post-btn" src="images/post.png"></button>
+      @if ($errors->has('content'))
+      <div class="content-alert">
+      <ul>
+        @foreach($errors->get('content') as $message)
+      <li>{{ $message }}</li>
+    @endforeach
+      </ul>
+      </div>
+    @endif
     </div>
-    @if ($errors->has('content'))
-    <div class="content-alert">
-    <ul>
-      @foreach($errors->get('content') as $message)
-    <li>{{ $message }}</li>
-  @endforeach
-    </ul>
-    </div>
-  @endif
-
-
   </form>
 
   <!-- 自分と、フォローしてる人の投稿を表示 -->

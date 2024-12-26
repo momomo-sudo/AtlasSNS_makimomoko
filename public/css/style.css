@@ -849,8 +849,7 @@ form span {
 /* 投稿機能のバリデーションメッセージ */
 .content-alert {
     position: absolute;
-    padding-left: 20%;
-    padding-bottom: 10%;
+    padding-left: 10%;
 }
 
 .post-alert {
